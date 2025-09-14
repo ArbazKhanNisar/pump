@@ -1,7 +1,5 @@
 import "./globals.css";
 import { Roboto, Poppins } from "next/font/google";
-import "owl.carousel/dist/assets/owl.carousel.css";
-import "owl.carousel/dist/assets/owl.theme.default.css";
 import 'animate.css'
 import Footer from '@/Component/footer'
 import Nav from '@/Component/navbar'
