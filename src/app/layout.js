@@ -39,7 +39,7 @@ export default function RootLayout({ children }) {
         />
         <link rel="stylesheet" href="/css/bootstrap.min.css" />
         <link rel="stylesheet" href="/css/style.css" />
-      </head>     d
+      </head>     
       <body 
       
       
