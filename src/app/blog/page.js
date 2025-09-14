@@ -36,7 +36,11 @@ return <>
         </p>
         <p className="card-text flex-grow-1">{item.excerpt}</p>
         <div className="mt-3">
-          <a className="btn btn-primary" href={`/blog/blog-details`}>Read More</a>
+          
+          <Link className="btn btn-primary" href={`/blog/blog-details`}>Read More
+          
+          </Link>
+         
         </div>
       </div>
     </article>
@@ -50,7 +54,7 @@ return <>
       <main className="container py-5">
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb">
-            <li className="breadcrumb-item"><a href="/">Home</a></li>
+            <li className="breadcrumb-item"><Link href="/">Home</Link></li>
             <li className="breadcrumb-item active">Blog</li>
           </ol>
         </nav>
@@ -71,13 +75,13 @@ return <>
             {/* Pagination (static sample) */}
             <nav className="mt-4">
               <ul className="pagination justify-content-center">
-                <li className="page-item disabled"><a className="page-link">‹</a></li>
-                <li className="page-item"><a className="page-link">1</a></li>
-                <li className="page-item active"><a className="page-link">2</a></li>
-                <li className="page-item"><a className="page-link">3</a></li>
-                <li className="page-item"><a className="page-link">…</a></li>
-                <li className="page-item"><a className="page-link">10</a></li>
-                <li className="page-item"><a className="page-link">›</a></li>
+                <li className="page-item disabled"><Link href={""} className="page-link">‹</Link></li>
+                <li className="page-item"><Link href={""} className="page-link">1</Link></li>
+                <li className="page-item active"><Link href={""} className="page-link">2</Link></li>
+                <li className="page-item"><Link href={""} className="page-link">3</Link></li>
+                <li className="page-item"><Link href={""} className="page-link">…</Link></li>
+                <li className="page-item"><Link href={""} className="page-link">10</Link></li>
+                <li className="page-item"><Link href={""} className="page-link">›</Link></li>
               </ul>
             </nav>
           </div>

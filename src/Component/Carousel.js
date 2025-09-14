@@ -29,7 +29,7 @@ export default function HomePage() {
       setActiveIndex((prev) => (prev + 1) % slides.length);
     }, 5000);
     return () => clearInterval(interval);
-  }, []);
+  }, [slides.length]);
 
   const goPrev = () =>
     setActiveIndex((prev) => (prev - 1 + slides.length) % slides.length);

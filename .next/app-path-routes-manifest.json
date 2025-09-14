@@ -1,0 +1,16 @@
+{
+  "/_not-found/page": "/_not-found",
+  "/favicon.ico/route": "/favicon.ico",
+  "/about/page": "/about",
+  "/appointment/page": "/appointment",
+  "/blog/blog-details/page": "/blog/blog-details",
+  "/blog/page": "/blog",
+  "/contact/page": "/contact",
+  "/page": "/",
+  "/feature/page": "/feature",
+  "/product/page": "/product",
+  "/product/product-detail/page": "/product/product-detail",
+  "/team/page": "/team",
+  "/service/page": "/service",
+  "/testimonial/page": "/testimonial"
+}

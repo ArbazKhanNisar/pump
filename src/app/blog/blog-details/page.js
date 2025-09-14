@@ -176,10 +176,10 @@ return <>
 
                       <blockquote>
                         <p>
-                          "The future of web development lies not just in
+                          The future of web development lies not just in
                           writing code, but in creating seamless, accessible,
                           and performant experiences that work for everyone,
-                          everywhere."
+                          everywhere.
                         </p>
                         <cite>Emily Thompson, Web Performance Architect</cite>
                       </blockquote>

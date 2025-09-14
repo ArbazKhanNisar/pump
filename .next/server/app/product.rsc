@@ -1,0 +1,26 @@
+1:"$Sreact.fragment"
+2:I[5193,["619","static/chunks/619-ba102abea3e3d0e4.js","693","static/chunks/693-b108809155573458.js","177","static/chunks/app/layout-31ec956471323e60.js"],"default"]
+3:I[9766,[],""]
+4:I[8924,[],""]
+5:I[3501,["619","static/chunks/619-ba102abea3e3d0e4.js","693","static/chunks/693-b108809155573458.js","177","static/chunks/app/layout-31ec956471323e60.js"],"default"]
+6:I[1959,[],"ClientPageRoot"]
+7:I[617,["619","static/chunks/619-ba102abea3e3d0e4.js","362","static/chunks/app/product/page-4e941edbef24a993.js"],"default"]
+a:I[4431,[],"OutletBoundary"]
+c:I[5278,[],"AsyncMetadataOutlet"]
+e:I[4431,[],"ViewportBoundary"]
+10:I[4431,[],"MetadataBoundary"]
+11:"$Sreact.suspense"
+13:I[7150,[],""]
+:HL["/_next/static/media/0484562807a97172-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/47cbc4e2adbc5db9-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/b957ea75a84b6ea7-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/css/901de7d434e01840.css","style"]
+:HL["/_next/static/css/e31f846d20f4f9d3.css","style"]
+0:{"P":null,"b":"bg_whVzS_TlPJAFMxdggu","p":"","c":["","product"],"i":false,"f":[[["",{"children":["product",{"children":["__PAGE__",{}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/901de7d434e01840.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","children":[["$","head",null,{"children":[["$","link",null,{"rel":"stylesheet","href":"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"}],["$","link",null,{"rel":"stylesheet","href":"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"}],["$","link",null,{"rel":"stylesheet","href":"/css/bootstrap.min.css"}],["$","link",null,{"rel":"stylesheet","href":"/css/style.css"}]]}],["$","body",null,{"className":"__variable_eab1d3 __variable_c169f5","children":[["$","$L2",null,{}],["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","$L5",null,{}]]}]]}]]}],{"children":["product",["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":[["$","$L6",null,{"Component":"$7","searchParams":{},"params":{},"promises":["$@8","$@9"]}],[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/e31f846d20f4f9d3.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","$La",null,{"children":["$Lb",["$","$Lc",null,{"promise":"$@d"}]]}]]}],{},null,false]},null,false]},null,false],["$","$1","h",{"children":[null,[["$","$Le",null,{"children":"$Lf"}],["$","meta",null,{"name":"next-size-adjust","content":""}]],["$","$L10",null,{"children":["$","div",null,{"hidden":true,"children":["$","$11",null,{"fallback":null,"children":"$L12"}]}]}]]}],false]],"m":"$undefined","G":["$13",[]],"s":false,"S":true}
+8:{}
+9:"$0:f:0:1:2:children:2:children:1:props:children:0:props:params"
+f:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+b:null
+14:I[622,[],"IconMark"]
+d:{"metadata":[["$","title","0",{"children":"My Website"}],["$","meta","1",{"name":"description","content":"Next.js site with Bootstrap template"}],["$","link","2",{"rel":"icon","href":"/favicon.ico","type":"image/x-icon","sizes":"16x16"}],["$","link","3",{"rel":"icon","href":"/img/favicon.ico"}],["$","$L14","4",{}]],"error":null,"digest":"$undefined"}
+12:"$d:metadata"

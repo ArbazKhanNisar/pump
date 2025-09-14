@@ -233,8 +233,8 @@ export default function PumpListing() {
               {visiblePumps.length === 0 && <div className="no-results">No pumps found matching your criteria.</div>}
 
               {visiblePumps.map((p) => (
-               <Link href="/product/product-detail" passHref>
-<article  key={p.id} className="pump-card">
+               <Link key={p.id} href="/product/product-detail" passHref>
+<article   className="pump-card">
                   <div className="card-media">
                     <img src={p.image} alt={p.title} />
                     <div className="year-badge">{p.year}</div>
