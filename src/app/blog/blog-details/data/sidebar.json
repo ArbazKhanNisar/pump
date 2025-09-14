@@ -1,0 +1,15 @@
+{
+    "recentPosts": [
+      { "id": "r1", "title": "Nihil blanditiis at in nihil autem", "date": "Jan 1, 2020", "thumb": "/images/thumb1.jpg" },
+      { "id": "r2", "title": "Quidem autem et impedit", "date": "Jan 1, 2020", "thumb": "/images/thumb2.jpg" },
+      { "id": "r3", "title": "Id quia et ut maxime similique occaecati ut", "date": "Jan 1, 2020", "thumb": "/images/thumb3.jpg" }
+    ],
+    "categories": [
+      { "name": "General", "count": 25 },
+      { "name": "Lifestyle", "count": 12 },
+      { "name": "Travel", "count": 5 },
+      { "name": "Design", "count": 22 }
+    ],
+    "tags": ["App", "IT", "Business", "Design", "Office", "Creative", "Studio", "Smart"]
+  }
+  

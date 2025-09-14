@@ -1,0 +1,39 @@
+[
+    {
+      "id": 1,
+      "title": "Dolorum optio tempore voluptas dignissimos cumque fuga qui quibusdam quia",
+      "excerpt": "Similique neque nam consequuntur ad non maxime aliquam quas. Quibusdam animi praesentium.",
+      "author": "John Doe",
+      "date": "Jan 1, 2022",
+      "comments": 12,
+      "image": "/assets/img/blog/blog-post-1.webp"
+    },
+    {
+      "id": 2,
+      "title": "Nisi magni odit consequatur autem nulla dolorem",
+      "excerpt": "Incidunt voluptate sit temporibus aperiam. Quia vitae aut sint ullam quis illum voluptatum et.",
+      "author": "John Doe",
+      "date": "Jan 1, 2022",
+      "comments": 12,
+      "image": "/assets/img/blog/blog-post-2.webp"
+    },
+    {
+      "id": 3,
+      "title": "Possimus soluta ut id suscipit ea ut",
+      "excerpt": "Aut iste neque ut illum qui perspiciatis similique recusandae non. Fugit autem dolorem labore omnis et.",
+      "author": "John Doe",
+      "date": "Jan 1, 2022",
+      "comments": 12,
+      "image": "/assets/img/blog/blog-post-3.webp"
+    },
+    {
+      "id": 4,
+      "title": "Non rem rerum nam cum quo minus. Dolor distinctio deleniti",
+      "excerpt": "Aspernatur rerum perferendis et sint. Voluptates cupiditate voluptas atque quae.",
+      "author": "John Doe",
+      "date": "Jan 1, 2022",
+      "comments": 12,
+      "image": "/blog/blog-hero-2.webp"
+    }
+  ]
+  

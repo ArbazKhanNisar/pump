@@ -1,0 +1,142 @@
+/* General Typography */
+body {
+  font-family: "Inter", "Helvetica", "Arial", sans-serif;
+  color: #444;
+  line-height: 1.7;
+}
+
+/* Header */
+header.navbar {
+  background: #37517e !important; /* same as screenshot */
+}
+header .nav-link {
+  color: #fff !important;
+  margin-left: 15px;
+  font-weight: 500;
+}
+header .nav-link.active {
+  color: #47b2e4 !important; /* highlight active menu */
+}
+header .btn {
+  border-radius: 50px;
+  font-weight: 500;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+  background: transparent;
+  padding-left: 0;
+}
+.breadcrumb-item + .breadcrumb-item::before {
+  content: "›";
+}
+
+/* Blog Cards */
+.card {
+  border: none;
+  border-radius: 8px;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s;
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+.card-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #37517e;
+}
+.card-text {
+  font-size: 0.9rem;
+}
+
+/* Sidebar boxes */
+.border.rounded {
+  background: #fff;
+  border: 1px solid #eee !important;
+}
+.border-start.border-primary {
+  border-color: #47b2e4 !important;
+}
+.sidebar-title {
+  font-weight: 600;
+  color: #37517e;
+}
+
+/* Sidebar lists */
+.sidebar-box ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.sidebar-box ul li {
+  padding: 6px 0;
+  font-size: 0.9rem;
+  color: #444;
+  cursor: pointer;
+}
+.sidebar-box ul li:hover {
+  color: #47b2e4;
+}
+
+/* Tags */
+.badge {
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 6px 10px;
+  border-radius: 5px;
+}
+
+/* Newsletter */
+section.bg-light {
+  background: #f6f9fe !important;
+}
+section.bg-light input {
+  border-radius: 30px;
+  padding: 10px 20px;
+}
+section.bg-light button {
+  border-radius: 30px;
+  padding: 10px 25px;
+  font-weight: 500;
+}
+
+/* Footer */
+footer {
+  background: #f8f9fa;
+  font-size: 0.9rem;
+}
+footer h6,
+footer h5 {
+  color: #37517e;
+}
+footer ul {
+  list-style: none;
+  padding: 0;
+}
+footer ul li {
+  padding: 4px 0;
+  cursor: pointer;
+}
+footer ul li:hover {
+  color: #47b2e4;
+}
+footer i {
+  font-size: 1.2rem;
+  color: #37517e;
+  cursor: pointer;
+}
+footer i:hover {
+  color: #47b2e4;
+}
+
+/* Pagination */
+.pagination .page-link {
+  border-radius: 5px;
+  margin: 0 3px;
+  color: #37517e;
+}
+.pagination .page-item.active .page-link {
+  background: #47b2e4;
+  border-color: #47b2e4;
+}

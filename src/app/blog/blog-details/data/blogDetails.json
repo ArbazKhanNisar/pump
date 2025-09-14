@@ -1,0 +1,55 @@
+{
+  "pageTitle": "Blog Details",
+  "article": {
+    "heroImage": "assets/img/blog/blog-post-3.webp",
+    "category": "Web Development",
+    "readingTime": "6 min read",
+    "title": "Modern Web Development: Best Practices and Future Trends for 2025",
+    "author": {
+      "name": "Michael Chen",
+      "role": "Senior Web Developer",
+      "image": "assets/img/person/person-f-8.webp"
+    },
+    "date": "Mar 15, 2025",
+    "commentCount": 18,
+    "paragraphs": [
+      "The landscape of web development continues to evolve...",
+      "As we delve into 2025, the web development ecosystem has transformed..."
+    ]
+  },
+  "tags": ["Web Development", "Performance", "Best Practices", "Trends", "2025"],
+  "comments": [
+    {
+      "name": "Thomas Anderson",
+      "avatar": "assets/img/person/person-f-9.webp",
+      "time": "2 hours ago",
+      "text": "Nullam ac urna eu felis dapibus condimentum sit amet a augue."
+    },
+    {
+      "name": "Emily Watson",
+      "avatar": "assets/img/person/person-f-7.webp",
+      "time": "3 hours ago",
+      "text": "Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero."
+    }
+  ],
+  "recentPosts": [
+    {
+      "title": "Nihil blanditiis at in nihil autem",
+      "image": "assets/img/blog/blog-post-square-1.webp",
+      "date": "Jan 1, 2020"
+    },
+    {
+      "title": "Quidem autem et impedit",
+      "image": "assets/img/blog/blog-post-square-2.webp",
+      "date": "Jan 1, 2020"
+    }
+  ],
+  "categories": [
+    { "name": "General", "count": 25 },
+    { "name": "Lifestyle", "count": 12 },
+    { "name": "Travel", "count": 5 },
+    { "name": "Design", "count": 22 },
+    { "name": "Creative", "count": 8 },
+    { "name": "Education", "count": 14 }
+  ]
+}
