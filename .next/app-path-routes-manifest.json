@@ -1,16 +1,16 @@
 {
   "/favicon.ico/route": "/favicon.ico",
   "/_not-found/page": "/_not-found",
-  "/about/page": "/about",
   "/appointment/page": "/appointment",
+  "/about/page": "/about",
   "/blog/blog-details/page": "/blog/blog-details",
-  "/blog/page": "/blog",
   "/contact/page": "/contact",
+  "/blog/page": "/blog",
   "/feature/page": "/feature",
   "/page": "/",
   "/product/product-detail/page": "/product/product-detail",
-  "/team/page": "/team",
   "/service/page": "/service",
+  "/team/page": "/team",
   "/testimonial/page": "/testimonial",
   "/product/page": "/product"
 }

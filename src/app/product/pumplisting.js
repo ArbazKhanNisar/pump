@@ -143,7 +143,9 @@ export default function PumpClient({ pumps }) {
               <Link key={p.id} href="/product/product-detail" passHref>
                 <article className="pump-card">
                   <div className="card-media">
-                    <img src={p.image} alt={p.title} />
+                    <img src={p.image} alt={p.title} 
+                    onError={(e) => { e.currentTarget.src = '/assets/img/blog/blog-post-3.webp'; }}
+                    />
                   </div>
 
                   <div className="card-body">
