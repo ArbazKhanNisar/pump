@@ -14,21 +14,40 @@ async function getPumps() {
   return data.data || [];
 }
 
+async function getProductTypes() {
+  const res = await fetch(
+    "https://ghostwhite-alligator-811158.hostingersite.com/api/product-type",
+    { cache: "no-store" }
+  );
+
+  if (!res.ok) throw new Error("Failed to fetch industry types");
+  const data = await res.json();
+  return data.data || [];
+}
+
+
+async function getIndustryTypes() {
+  const res = await fetch(
+    "https://ghostwhite-alligator-811158.hostingersite.com/api/industry-type",
+    { cache: "no-store" }
+  );
+
+  if (!res.ok) throw new Error("Failed to fetch industry types");
+  const data = await res.json();
+  return data.data || [];
+}
+
 export default async function PumpListing() {
-  const pumps = await getPumps();
+  // Fetch both in parallel for speed
+  const [pumps, PtypesData,ItypesData,] = await Promise.all([getPumps(), getProductTypes(),getIndustryTypes()]);
 
-  // Extract filters
-  const types = ["All", ...new Set(pumps.map((p) => p.type).filter(Boolean))];
-  const models = ["All", ...new Set(pumps.map((p) => p.model).filter(Boolean))];
-
-  // We'll filter + paginate in client
+  console.log(PtypesData,ItypesData);
   return (
     <section className="px-6 py-8">
-      
-      
-      <PumpClient pumps={pumps} types={types} models={models} />
+      <PumpClient pumps={pumps} Ptypes={PtypesData} Itypes={ItypesData} />
     </section>
   );
 }
+
 
 // Client-side filtering + pagination component

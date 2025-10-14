@@ -1,10 +1,12 @@
 "use client";
-import React, { useMemo, useState } from "react";
+
+import React, { useState, useMemo } from "react";
 import Link from "next/link";
 
 function uniqueValues(arr, key) {
   const set = new Set();
   const out = [];
+  console.log(arr);
   for (const item of arr || []) {
     const val = typeof key === "function" ? key(item) : item?.[key];
     if (val && !set.has(val)) {
@@ -15,7 +17,7 @@ function uniqueValues(arr, key) {
   return out;
 }
 
-export default function PumpClient({ pumps }) {
+export default function PumpClient({ pumps, Ptypes,Itypes}) {
   const [search, setSearch] = useState("");
   const [brand, setBrand] = useState("All");
   const [type, setType] = useState("All");
@@ -24,21 +26,15 @@ export default function PumpClient({ pumps }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [showOnPage, setShowOnPage] = useState(9);
 
+  // ✅ Dropdown data
+  // const brands = useMemo(() => ["All", ...uniqueValues(pumps, "brand_name")], [pumps]);
+  const industryTypes = useMemo(() => ["All", ...uniqueValues(Itypes, "name")], [Itypes]);
+  const models = useMemo(() => ["All", ...uniqueValues(Ptypes, "name")], [Ptypes]);
 
-  
-
-  // Derived dropdown options
-  const brands = useMemo(() => {
-    return ["All", ...uniqueValues(pumps, "brand_name")]; // adjust key if available
-  }, [pumps]);
-
-  const types = useMemo(() => ["All", ...uniqueValues(pumps, "type")], [pumps]);
-  const models = useMemo(() => ["All", ...uniqueValues(pumps, "model")], [pumps]);
-
-  // Filtering logic
+  // ✅ Filtering logic
   const filtered = useMemo(() => {
     return pumps.filter((c) => {
-      if (search && !c.title?.toLowerCase().includes(search.toLowerCase())) return false;
+      if (search && !c.title?.toLowerCase?.().includes(search.toLowerCase())) return false;
       if (brand !== "All" && c.brand_name !== brand) return false;
       if (type !== "All" && c.type !== type) return false;
       if (model !== "All" && c.model !== model) return false;
@@ -46,7 +42,7 @@ export default function PumpClient({ pumps }) {
     });
   }, [pumps, search, brand, type, model]);
 
-  // Pagination logic
+  // ✅ Pagination
   const totalPages = Math.ceil(filtered.length / showOnPage);
   const startIndex = (currentPage - 1) * showOnPage;
   const visiblePumps = filtered.slice(startIndex, startIndex + showOnPage);
@@ -80,25 +76,25 @@ export default function PumpClient({ pumps }) {
           <div className="widget">
             <h3>Pump Filter</h3>
 
-            <label className="label">Brand</label>
+            {/* <label className="label">Brand</label>
             <select value={brand} onChange={(e) => setBrand(e.target.value)}>
               {brands.map((b) => (
                 <option key={b} value={b}>
                   {b}
                 </option>
               ))}
-            </select>
+            </select> */}
 
-            <label className="label">Type</label>
+            <label className="label">Industry Types</label>
             <select value={type} onChange={(e) => setType(e.target.value)}>
-              {types.map((t) => (
+              {industryTypes.map((t) => (
                 <option key={t} value={t}>
                   {t}
                 </option>
               ))}
             </select>
 
-            <label className="label">Model</label>
+            <label className="label">Product Types</label>
             <select value={model} onChange={(e) => setModel(e.target.value)}>
               {models.map((m) => (
                 <option key={m} value={m}>
@@ -140,24 +136,26 @@ export default function PumpClient({ pumps }) {
             )}
 
             {visiblePumps.map((p) => (
-              <Link key={p.id} href="/product/product-detail" passHref>
+              <Link key={p.id} href={`/product/product-detail/${p.id}`} passHref>
                 <article className="pump-card">
                   <div className="card-media">
-                    <img src={p.image} alt={p.title} 
-                    onError={(e) => { e.currentTarget.src = '/assets/img/blog/blog-post-3.webp'; }}
+                    <img
+                      src={p.image}
+                      alt={p.title}
+                      onError={(e) => {
+                        e.currentTarget.src = "/assets/img/blog/blog-post-3.webp";
+                      }}
                     />
                   </div>
 
                   <div className="card-body">
                     <h4 className="pump-title">{p.title}</h4>
                     <div className="meta-row">
-                      {/* <span>Model: {p.model}</span>
-                      <span className="divider">|</span> */}
                       <span>Type: {p.type}</span>
                       <span className="divider">|</span>
                       <span>{p.power || p.drive}</span>
                     </div>
-                    <div className="card-footer ">
+                    <div className="card-footer">
                       <div className="status rent">{p.model}</div>
                     </div>
                   </div>
@@ -166,7 +164,7 @@ export default function PumpClient({ pumps }) {
             ))}
           </div>
 
-          {/* Pagination buttons */}
+          {/* Pagination */}
           {totalPages > 1 && (
             <div className="pagination">
               {Array.from({ length: totalPages }, (_, i) => (
@@ -189,5 +187,3 @@ export default function PumpClient({ pumps }) {
     </main>
   );
 }
-
-
