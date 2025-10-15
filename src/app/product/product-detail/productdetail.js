@@ -4,36 +4,7 @@ import React, { useMemo, useState, useEffect } from "react";
 import Image from "next/image";
 import "./productdetailstyle.css";
 
-const product = {
-    id: 1,
-    title: "Title 11111",
-    model: "Model11 111111",
-    type: "Type11 111111111",
-    drive: "Drive1111111111",
-    image: "https://ghostwhite-alligator-811158.hostingersite.com/storage/product/1758746380_3.sm.webp",
-    description: "<ul><li><b>asdflasjdflkasjdf</b></li></ul><h1><u>asdfasdfasdfasdf</u></h1><p><span style=\"background-color:rgb(255,255,0);\">asdfasdf</span></p>",
-    product_applications: [
-      { id: 5, title: "Sint dolores atque 111111111111", points: ["Voluptatem quaerat r11111","Laboriosam iste dol111","Rerum quis alias vol111","Quis ipsam dolores i1111111"] },
-      { id: 6, title: "Quis accusamus amet333", points: ["Molestiae optio ut333333","Et quis eum ut ut sa333333","Alias excepteur tota3333333"] },
-      { id: 7, title: "Incidunt sint porro", points: ["Quas dolorem consect","Exercitationem ratio","Exercitation sed dol","Vel voluptatum et ni"] }
-    ],
-    product_model_features: [
-      { id: 5, title: "Sint dolores atque 111111111111" },
-      { id: 6, title: "Quis accusamus amet333" },
-      { id: 7, title: "Incidunt sint porro" }
-    ],
-    product_resources: [
-      { id: 5, title: "Sint dolores atque 111111111111", points: ["Voluptatem quaerat r11111","Laboriosam iste dol111","Rerum quis alias vol111","Quis ipsam dolores i1111111"] },
-      { id: 6, title: "Quis accusamus amet333", points: ["Molestiae optio ut333333","Et quis eum ut ut sa333333","Alias excepteur tota3333333"] },
-      { id: 7, title: "Incidunt sint porro", points: ["Quas dolorem consect","Exercitationem ratio","Exercitation sed dol","Vel voluptatum et ni"] }
-    ],
-    product_specifications: [
-      { id: 5, name: "Capacity", value: "Up to 400 m³/h (1760 USGPM)" },
-      { id: 6, name: "Head", value: "Up to 120 meters (394 feet)" },
-      { id: 7, name: "Temperature Range", value: "-40°C to +200°C (-40°F to +392°F)" }
-    ]
-  };
-  
+
   const relatedProducts = [
     {
       id: 1,
@@ -64,7 +35,6 @@ const product = {
   
   export default function ProductDetailProductDetail({ product }) {
     const [activeTab, setActiveTab] = useState("description");
-  
     return (
       <div className="container">
         <main className="product-detail">
