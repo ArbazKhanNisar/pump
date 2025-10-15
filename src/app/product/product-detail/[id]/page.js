@@ -44,10 +44,17 @@ async function getProduct(id) {
 }
 
 export default async function ProductPage({ params }) {
-  const product = await getProduct(params.id);
+  // asynchronous access of `params.id`.
+  const { id } = await params;
+  const product = await getProduct(id);
 
-  if (!product) return <p>Product not found</p>;
-  if (product.error) return <p>Error: {product.error}</p>;
+  if (!product) return notFound(); // cleaner than <p>Product not found</p>
+  if (product.error)
+    return (
+      <section className="px-6 py-8 text-danger">
+        <p>Error: {product.error}</p>
+      </section>
+    );
 
   return (
     <section className="px-6 py-8">
