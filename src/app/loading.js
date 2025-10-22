@@ -1,20 +1,23 @@
 export default function Loading() {
   return (
-    <section className="flex flex-col items-center justify-center h-screen bg-gradient-to-b from-blue-50 to-white">
-      {/* Animated spinner with glow */}
-      <div className="relative flex items-center justify-center">
-        <div className="absolute h-16 w-16 rounded-full border-4 border-blue-100 animate-ping"></div>
-        <div className="h-12 w-12 rounded-full border-4 border-blue-500 border-t-transparent animate-spin"></div>
+    <section
+      className="d-flex flex-column justify-content-center align-items-center vh-100 bg-light"
+    >
+      {/* Bootstrap spinner */}
+      <div
+        className="spinner-border text-primary mb-3"
+        role="status"
+        style={{ width: "3rem", height: "3rem" }}
+      >
+        <span className="visually-hidden">Loading...</span>
       </div>
 
-      {/* Text */}
-      <p className="mt-6 text-lg font-semibold text-gray-800 tracking-wide">
-        Loading pumps...
-      </p>
+      {/* Main message */}
+      <h5 className="text-dark fw-semibold">Loading pumps...</h5>
 
-      {/* Subtext shimmer */}
-      <p className="mt-2 text-sm text-gray-500 animate-pulse">
-        Please wait while we prepare your data
+      {/* Subtext */}
+      <p className="text-muted mt-2">
+        Please wait while we fetch the latest data
       </p>
     </section>
   );

@@ -13,7 +13,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 export default function Home() {
   useEffect(() => {
-    AOS.init({ duration: 1000, once: true }); // once=true = animate only first time
+    AOS.init({ once: true, disable: "mobile" }); // prevents forcing scroll on html
   }, []);
   return (
     <>

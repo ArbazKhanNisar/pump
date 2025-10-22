@@ -41,7 +41,7 @@ export default function RootLayout({ children }) {
         <link rel="stylesheet" href="/css/style.css" />
       </head>     
       <body 
-      
+     
       
       className={`${roboto.variable} ${poppins.variable}`}>
         {<Nav/>}
