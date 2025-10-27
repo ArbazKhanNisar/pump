@@ -27,9 +27,9 @@ export default function Appointment() {
     setSuccess(false);
 
     // Your EmailJS keys
-    const SERVICE_ID = "your_service_id";
-    const TEMPLATE_ID = "your_template_id";
-    const PUBLIC_KEY = "your_public_key";
+    const SERVICE_ID = "service_ojy1eor";
+    const TEMPLATE_ID = "template_uj0dgmm";
+    const PUBLIC_KEY = "Z3asPQzPOE4j5y9n-";
 
     try {
       await emailjs.send(
@@ -64,12 +64,12 @@ export default function Appointment() {
             <div className="border-start border-5 border-primary ps-4 mb-5">
               <h6 className="text-white text-uppercase mb-2">Appointment</h6>
               <h1 className="display-6 text-white mb-0">
-                A Company Involved In Service And Maintenance
+                A Company Involved In Mechanical Seals and Rotary Joints.
               </h1>
             </div>
             <p className="text-white mb-0">
-              Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos.
-              Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet.
+            At Inventomatic Seals India, we do more than just manufacture mechanical seals — we build long-term partnerships by 
+            delivering smart, application-driven sealing solutions that reduce downtime and enhance operational efficiency.
             </p>
           </div>
 
