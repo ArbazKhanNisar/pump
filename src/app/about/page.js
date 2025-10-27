@@ -1,6 +1,21 @@
 import About from "@/Component/about";
+import { getPagesMetaData } from "@/lib/api";
 
-export default function page(params) {
+export async function generateMetadata() {
+  const pages = await getPagesMetaData('about');
+  const home = pages || {};
+
+  return {
+    title: home.meta_title || "Home - Company Name",
+    description: home.meta_description || "Welcome to our company website.",
+    keywords: home.meta_keywords || "home, company, services, features",
+  };
+}
+
+
+export default async function page(params) {
+  const pages = await getPagesMetaData('about');
+  const about= pages?.page_sections?.[0]?.content || {};
     return <>
     <div
       className="container-fluid page-header py-5 mb-5 text-center text-white"
@@ -43,6 +58,6 @@ export default function page(params) {
         </nav>
       </div>
     </div>
-    <About/>
+    <About data={about}/>
     </>
 };

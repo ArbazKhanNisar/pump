@@ -52,9 +52,7 @@ export default function Facts() {
                 <h1 className="display-1">{fact.id}</h1>
                 <h4 className="text-white mb-3">{fact.title}</h4>
                 <p className="text-white">{fact.desc}</p>
-                <a className="text-white small" href="#">
-                  READ MORE <i className="fa fa-arrow-right ms-3"></i>
-                </a>
+                
               </div>
             </div>
           </div>

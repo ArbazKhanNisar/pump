@@ -1,6 +1,23 @@
 import Services from "@/Component/service";
+import { cleanData} from "@/constants/config";
+import { getPagesMetaData } from "@/lib/api";
 
-export default function page(params) {
+export async function generateMetadata() {
+  const pages = await getPagesMetaData('services');
+  const home = pages || {};
+
+  return {
+    title: home.meta_title || "Home - Company Name",
+    description: home.meta_description || "Welcome to our company website.",
+    keywords: home.meta_keywords || "home, company, services, features",
+  };
+}
+
+
+
+export default async function page() {
+  const pages = await getPagesMetaData('services');
+  const services= cleanData(pages?.page_sections?.[0]?.content) || {};
     return<>
     <div
       className="container-fluid page-header py-5 mb-5 text-center text-white"
@@ -43,6 +60,6 @@ export default function page(params) {
         </nav>
       </div>
     </div>
-    <Services/>
+    <Services services={services}/>
     </>
 };

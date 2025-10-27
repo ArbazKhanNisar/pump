@@ -1,30 +1,39 @@
-// app/blog/BlogList.jsx
 "use client";
-
-"use client";
-import { useState, useMemo } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { fetchBlogs } from "@/lib/api";
 import "./main.css";
 
-export default function BlogList({ blogs, categories }) {
+export default function BlogList({ categories }) {
+  const [blogs, setBlogs] = useState([]);
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [loading, setLoading] = useState(true);
 
-  // 🔍 Filtered Blogs
-  const filteredBlogs = useMemo(() => {
-    return blogs.filter((b) => {
-      const matchesSearch =
-        b.title.toLowerCase().includes(search.toLowerCase()) ||
-        b.sub_title?.toLowerCase().includes(search.toLowerCase());
-
-      const matchesCategory =
-        selectedCategory === "All" ||
-        b.category?.toLowerCase() === selectedCategory.toLowerCase();
-
-      return matchesSearch && matchesCategory;
+  // 🧠 Fetch blogs dynamically
+  const handleFetch = async () => {
+    setLoading(true);
+    const data = await fetchBlogs({
+      category: selectedCategory,
+      title: search,
     });
-  }, [blogs, search, selectedCategory]);
+    setBlogs(data);
+    setLoading(false);
+  };
+
+  // ⏳ Debounced search + category change
+  useEffect(() => {
+    const delay = setTimeout(() => {
+      handleFetch();
+    }, 400);
+    return () => clearTimeout(delay);
+  }, [search, selectedCategory]);
+
+  // 🏁 Initial load
+  useEffect(() => {
+    handleFetch();
+  }, []);
 
   return (
     <main className="container py-5">
@@ -41,24 +50,26 @@ export default function BlogList({ blogs, categories }) {
       <h2 className="fw-bold mb-4">Blog</h2>
 
       <div className="row">
-        {/* Left Section (Blog List) */}
+        {/* Left Section */}
         <div className="col-lg-8">
-          <div className="row g-4">
-            {filteredBlogs.length === 0 ? (
-              <p>No blogs found.</p>
-            ) : (
-              filteredBlogs.map((b) => (
+          {loading ? (
+            <p>Loading blogs...</p>
+          ) : blogs.length === 0 ? (
+            <p>No blogs found.</p>
+          ) : (
+            <div className="row g-4">
+              {blogs.map((b) => (
                 <div className="col-md-6" key={b.id}>
                   <BlogCard item={b} />
                 </div>
-              ))
-            )}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Right Section (Sidebar) */}
         <aside className="col-lg-4">
-          {/* 🔍 Search Box */}
+          {/* 🔍 Search */}
           <div className="mb-4 p-3 border rounded sidebar-box">
             <h6 className="fw-bold border-start border-3 ps-2 border-primary sidebar-title">
               Search
@@ -90,9 +101,9 @@ export default function BlogList({ blogs, categories }) {
               {categories.map((c) => (
                 <li
                   key={c.name}
-                  onClick={() => setSelectedCategory(c.name)}
+                  onClick={() => setSelectedCategory(c.id)}
                   className={`mb-2 ${
-                    selectedCategory === c.name ? "fw-bold text-primary" : ""
+                    selectedCategory === c.id ? "fw-bold text-primary" : ""
                   }`}
                   style={{ cursor: "pointer" }}
                 >
@@ -145,4 +156,5 @@ function BlogCard({ item }) {
     </article>
   );
 }
+
 

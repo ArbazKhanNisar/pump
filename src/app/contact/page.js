@@ -1,5 +1,16 @@
-"use client";
 
+import { getPagesMetaData } from "@/lib/api";
+
+export async function generateMetadata() {
+  const pages = await getPagesMetaData('contact');
+  const home = pages || {};
+
+  return {
+    title: home.meta_title || "Home - Company Name",
+    description: home.meta_description || "Welcome to our company website.",
+    keywords: home.meta_keywords || "home, company, services, features",
+  };
+}
 export default function ContactSection() {
   return (
     <>

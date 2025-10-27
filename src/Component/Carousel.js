@@ -1,30 +1,28 @@
 "use client";
 
 import { useState, useEffect } from "react";
-
-export default function HomePage() {
-  const slides = [
-    {
-      img: "/img/carousel-1.jpg",
-      subtitle: "Welcome to Apex",
-      title: "A Construction & Renovation Company",
-      breadcrumbs: ["Commercial", "Residential", "Industrial"],
-      btnText: "More Details",
-      btnLink: "#",
-    },
-    {
-      img: "/img/carousel-2.jpg",
-      subtitle: "Welcome to Apex",
-      title: "Professional Tiling & Painting Services",
-      breadcrumbs: ["Commercial", "Residential", "Industrial"],
-      btnText: "More Details",
-      btnLink: "#",
-    },
-  ];
+import { IMAGE_DOMAINS } from "@/constants/config";
+export default function HomePage({slides}) {
+  // const slides = [
+  //   {
+  //     img: "/img/carousel-1.jpg",
+  //     subtitle: "Welcome to Apex",
+  //     title: "A Construction & Renovation Company",
+     
+     
+  //   },
+  //   {
+  //     img: "/img/carousel-2.jpg",
+  //     subtitle: "Welcome to Apex",
+  //     title: "Professional Tiling & Painting Services",
+     
+  //   },
+  // ];
 
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
+    console.log(slides)
     const interval = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % slides.length);
     }, 5000);
@@ -45,7 +43,7 @@ export default function HomePage() {
           }`}
         >
           <img
-            src={slide.img}
+            src={IMAGE_DOMAINS(slide.image)}
             alt={`Slide ${idx + 1}`}
             className="w-100 h-100"
             style={{ objectFit: "cover" }}
@@ -54,18 +52,8 @@ export default function HomePage() {
             <div className="container">
               <div className="row justify-content-center">
                 <div className="col-12 col-lg-10 text-center">
-                  <h5 className="text-light text-uppercase mb-3 slide-in-down">{slide.subtitle}</h5>
+                  <h5 className="text-light text-uppercase mb-3 slide-in-down">Welcome to Apex</h5>
                   <h1 className="display-2 text-light mb-3 slide-in-down">{slide.title}</h1>
-                  <ol className="breadcrumb mb-4 pb-2 justify-content-center">
-                    {slide.breadcrumbs.map((b, i) => (
-                      <li key={i} className="breadcrumb-item fs-5 text-light">
-                        {b}
-                      </li>
-                    ))}
-                  </ol>
-                  <a href={slide.btnLink} className="btn btn-primary py-3 px-5">
-                    {slide.btnText}
-                  </a>
                 </div>
               </div>
             </div>

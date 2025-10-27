@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
+import { API_ENDPOINTS } from "@/constants/config";
 
 function uniqueValues(arr, key) {
   const set = new Set();
   const out = [];
-  console.log(arr);
   for (const item of arr || []) {
     const val = typeof key === "function" ? key(item) : item?.[key];
     if (val && !set.has(val)) {
@@ -17,39 +17,78 @@ function uniqueValues(arr, key) {
   return out;
 }
 
-export default function PumpClient({ pumps, Ptypes,Itypes}) {
+export default function PumpClient({ Ptypes, Itypes }) {
+  const [pumps, setPumps] = useState([]);
+  const [loading, setLoading] = useState(false);
+
   const [search, setSearch] = useState("");
-  const [brand, setBrand] = useState("All");
+  const [debouncedSearch, setDebouncedSearch] = useState(search);
   const [type, setType] = useState("All");
   const [model, setModel] = useState("All");
 
   const [currentPage, setCurrentPage] = useState(1);
   const [showOnPage, setShowOnPage] = useState(9);
 
-  // ✅ Dropdown data
-  // const brands = useMemo(() => ["All", ...uniqueValues(pumps, "brand_name")], [pumps]);
   const industryTypes = useMemo(() => ["All", ...uniqueValues(Itypes, "name")], [Itypes]);
   const models = useMemo(() => ["All", ...uniqueValues(Ptypes, "name")], [Ptypes]);
 
-  // ✅ Filtering logic
-  const filtered = useMemo(() => {
-    return pumps.filter((c) => {
-      if (search && !c.title?.toLowerCase?.().includes(search.toLowerCase())) return false;
-      if (brand !== "All" && c.brand_name !== brand) return false;
-      if (type !== "All" && c.type !== type) return false;
-      if (model !== "All" && c.model !== model) return false;
-      return true;
-    });
-  }, [pumps, search, brand, type, model]);
+  // ✅ Get matching IDs by name
+  const getIndustryIdByName = (name) => Itypes.find((i) => i.name === name)?.id;
+  const getProductIdByName = (name) => Ptypes.find((p) => p.name === name)?.id;
+
+  // ✅ Debounce search input (500ms)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedSearch(search);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, [search]);
+
+  // ✅ Fetch pumps whenever filters or debounced search change
+  useEffect(() => {
+    async function fetchPumps() {
+      setLoading(true);
+      try {
+        const params = new URLSearchParams();
+
+        if (debouncedSearch) params.append("title", debouncedSearch);
+        if (type !== "All") {
+          const typeId = getIndustryIdByName(type);
+          if (typeId) params.append("industry_type_id", typeId);
+        }
+        if (model !== "All") {
+          const modelId = getProductIdByName(model);
+          if (modelId) params.append("product_type_id", modelId);
+        }
+
+        const url = `${API_ENDPOINTS.PRODUCT_List(params)}`;
+        console.log("API URL:", url);
+
+        const res = await fetch(url, { cache: "no-store" });
+        if (!res.ok) throw new Error("Failed to fetch pumps");
+        const data = await res.json();
+
+        setPumps(data?.data || []);
+        setCurrentPage(1);
+      } catch (err) {
+        console.error("Error fetching pumps:", err);
+        setPumps([]);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchPumps();
+  }, [debouncedSearch, type, model]);
 
   // ✅ Pagination
-  const totalPages = Math.ceil(filtered.length / showOnPage);
+  const totalPages = Math.ceil(pumps.length / showOnPage);
   const startIndex = (currentPage - 1) * showOnPage;
-  const visiblePumps = filtered.slice(startIndex, startIndex + showOnPage);
+  const visiblePumps = pumps.slice(startIndex, startIndex + showOnPage);
 
   const resetFilters = () => {
     setSearch("");
-    setBrand("All");
     setType("All");
     setModel("All");
     setCurrentPage(1);
@@ -75,15 +114,6 @@ export default function PumpClient({ pumps, Ptypes,Itypes}) {
 
           <div className="widget">
             <h3>Pump Filter</h3>
-
-            {/* <label className="label">Brand</label>
-            <select value={brand} onChange={(e) => setBrand(e.target.value)}>
-              {brands.map((b) => (
-                <option key={b} value={b}>
-                  {b}
-                </option>
-              ))}
-            </select> */}
 
             <label className="label">Industry Types</label>
             <select value={type} onChange={(e) => setType(e.target.value)}>
@@ -111,77 +141,59 @@ export default function PumpClient({ pumps, Ptypes,Itypes}) {
 
         {/* Main content */}
         <section className="pump-main-content">
-          <div className="controls-row">
-            <div className="left-controls">
-              <label>
-                Show
-                <select
-                  value={showOnPage}
-                  onChange={(e) => {
-                    setShowOnPage(Number(e.target.value));
-                    setCurrentPage(1);
-                  }}
-                >
-                  <option value={6}>6 Pumps</option>
-                  <option value={9}>9 Pumps</option>
-                  <option value={12}>12 Pumps</option>
-                </select>
-              </label>
-            </div>
-          </div>
+          {loading ? (
+            <div className="loading">Loading pumps...</div>
+          ) : (
+            <>
+              <div className="pump-grid">
+                {visiblePumps.length === 0 && (
+                  <div className="no-results">No pumps found matching your criteria.</div>
+                )}
 
-          <div className="pump-grid">
-            {visiblePumps.length === 0 && (
-              <div className="no-results">No pumps found matching your criteria.</div>
-            )}
+                {visiblePumps.map((p) => (
+                  <Link key={p.id} href={`/product/product-detail/${p.id}`} passHref>
+                    <article className="pump-card">
+                      <div className="card-media">
+                        <img
+                          src={p.image}
+                          alt={p.title}
+                          onError={(e) => {
+                            e.currentTarget.src = "/assets/img/blog/blog-post-3.webp";
+                          }}
+                        />
+                      </div>
 
-            {visiblePumps.map((p) => (
-              <Link key={p.id} href={`/product/product-detail/${p.id}`} passHref>
-                <article className="pump-card">
-                  <div className="card-media">
-                    <img
-                      src={p.image}
-                      alt={p.title}
-                      onError={(e) => {
-                        e.currentTarget.src = "/assets/img/blog/blog-post-3.webp";
-                      }}
-                    />
-                  </div>
+                      <div className="card-body">
+                        <h4 className="pump-title">{p.title}</h4>
+                        <div className="meta-row">
+                          <span>Type: {p.type}</span>
+                          <span className="divider">|</span>
+                          <span>{p.power || p.drive}</span>
+                        </div>
+                        <div className="card-footer">
+                          <div className="status rent">{p.model}</div>
+                        </div>
+                      </div>
+                    </article>
+                  </Link>
+                ))}
+              </div>
 
-                  <div className="card-body">
-                    <h4 className="pump-title">{p.title}</h4>
-                    <div className="meta-row">
-                      <span>Type: {p.type}</span>
-                      <span className="divider">|</span>
-                      <span>{p.power || p.drive}</span>
-                    </div>
-                    <div className="card-footer">
-                      <div className="status rent">{p.model}</div>
-                    </div>
-                  </div>
-                </article>
-              </Link>
-            ))}
-          </div>
-
-          {/* Pagination */}
-          {totalPages > 1 && (
-            <div className="pagination">
-              {Array.from({ length: totalPages }, (_, i) => (
-                <button
-                  key={i + 1}
-                  className={`page-btn ${currentPage === i + 1 ? "active" : ""}`}
-                  onClick={() => setCurrentPage(i + 1)}
-                >
-                  {i + 1}
-                </button>
-              ))}
-            </div>
+              {totalPages > 1 && (
+                <div className="pagination">
+                  {Array.from({ length: totalPages }, (_, i) => (
+                    <button
+                      key={i + 1}
+                      className={`page-btn ${currentPage === i + 1 ? "active" : ""}`}
+                      onClick={() => setCurrentPage(i + 1)}
+                    >
+                      {i + 1}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </>
           )}
-
-          <div className="results-info">
-            Showing {visiblePumps.length} of {filtered.length} results
-          </div>
         </section>
       </div>
     </main>

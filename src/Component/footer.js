@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-
+import { logo ,APP_NAME } from "@/constants/config";
 export default function Footer() {
   return (
     <div
@@ -13,11 +13,11 @@ export default function Footer() {
           {/* Logo + Socials */}
           <div className="col-lg-3 col-md-6">
             <h1 className="text-white mb-4">
-              <i className="fa fa-building text-primary me-3"></i>APEX
+            <img width={120} height={120} src={logo} /> 
             </h1>
             <p>
-              Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat
-              ipsum et lorem et sit, sed stet lorem sit clita
+            Inventomatic Seals India <br/>
+            Precision in motion
             </p>
             <div className="d-flex pt-2">
               <Link
@@ -39,7 +39,7 @@ export default function Footer() {
                 <i className="fab fa-youtube"></i>
               </Link>
               <Link
-                href="#"
+                href="https://www.linkedin.com/company/inventomatic/"
                 className="btn btn-square btn-outline-primary me-0"
               >
                 <i className="fab fa-linkedin-in"></i>
@@ -51,14 +51,13 @@ export default function Footer() {
           <div className="col-lg-3 col-md-6">
             <h4 className="text-light mb-4">Address</h4>
             <p>
-              <i className="fa fa-map-marker-alt me-3"></i>123 Street, New York,
-              USA
+              <i className="fa fa-map-marker-alt me-3"></i>PLOT NO-4, NEAR FATIMA APT, WESTERN PARK, KASHIMIRA, MIRA ROAD (EAST), THANE 401107
             </p>
             <p>
-              <i className="fa fa-phone-alt me-3"></i>+012 345 67890
+              <i className="fa fa-phone-alt me-3"></i>+91 99872 53602
             </p>
             <p>
-              <i className="fa fa-envelope me-3"></i>info@example.com
+              <i className="fa fa-envelope me-3"></i>info@inventomaticseals.com
             </p>
           </div>
 

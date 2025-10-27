@@ -1,7 +1,7 @@
 "use client";
+import { IMAGE_DOMAINS } from "@/constants/config";
 
-
-export default function About() {
+export default function About({data}) {
  
 
   return (
@@ -16,20 +16,11 @@ export default function About() {
             >
               <img
                 className="position-absolute w-100 h-100"
-                src="/img/about.jpg"
+                src={IMAGE_DOMAINS(data.image)}
                 alt="About"
                 style={{ objectFit: "cover" }}
               />
-              <div
-                className="position-absolute top-0 start-0 bg-white pe-3 pb-3"
-                style={{ width: "200px", height: "200px" }}
-              >
-                <div className="d-flex flex-column justify-content-center text-center bg-primary h-100 p-3">
-                  <h1 className="text-white">25</h1>
-                  <h2 className="text-white">Years</h2>
-                  <h5 className="text-white mb-0">Experience</h5>
-                </div>
-              </div>
+             
             </div>
           </div>
 
@@ -39,19 +30,13 @@ export default function About() {
               <div className="border-start border-5 border-primary ps-4 mb-5">
                 <h6 className="text-body text-uppercase mb-2">About Us</h6>
                 <h1 className="display-6 mb-0">
-                  Unique Solutions For Residentials & Industries!
+                 {data.title}
                 </h1>
               </div>
               <p>
-                Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu
-                diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet
-                lorem sit clita duo justo magna dolore erat amet
+                {data.description}
               </p>
-              <p className="mb-4">
-                Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu
-                diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet
-                lorem sit clita duo justo magna dolore erat amet
-              </p>
+             
 
               <div className="border-top mt-4 pt-4">
                 <div className="row g-4">
