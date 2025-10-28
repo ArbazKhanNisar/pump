@@ -3,7 +3,8 @@
 import React, { useMemo, useState, useEffect } from "react";
 import Image from "next/image";
 import "./productdetailstyle.css";
-
+import ReCAPTCHA from "react-google-recaptcha";
+import { Site_Key } from "@/constants/config";
 
   const relatedProducts = [
     {
@@ -35,6 +36,24 @@ import "./productdetailstyle.css";
   
   export default function ProductDetailProductDetail({ product }) {
     const [activeTab, setActiveTab] = useState("description");
+    const [isOpen, setIsOpen] = useState(false);
+    const [captchaValue, setCaptchaValue] = useState(null);
+
+  const openModal = () => setIsOpen(true);
+  const closeModal = () => setIsOpen(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!captchaValue) {
+      alert("Please verify the CAPTCHA before submitting.");
+      return;
+    }
+
+    // ✅ Submit your form data to backend here
+    alert("Form submitted successfully!");
+    setIsOpen(false);
+  };
     return (
       <div className="container">
         <main className="product-detail">
@@ -78,28 +97,91 @@ import "./productdetailstyle.css";
   
                   <div className="cta-buttons">
                     {/* <button className="btn-primary">Request Quote</button> */}
-                    <button className="btn-primary">Contact Sales</button>
-                    <button className="btn-outline">Download Brochure</button>
+                    <button className="btn-primary" onClick={openModal}>Contact Sales</button>
+                    <button className="btn-outline" onClick={openModal}>Download Brochure</button>
                   </div>
   
-                  {/* <div className="quick-info">
-                    <div className="info-item">
-                      <span className="icon">✓</span>
-                      <span>In stock: 5 units</span>
-                    </div>
-                    <div className="info-item">
-                      <span className="icon">✓</span>
-                      <span>Lead time: 2-4 weeks</span>
-                    </div>
-                    <div className="info-item">
-                      <span className="icon">✓</span>
-                      <span>2-year warranty</span>
-                    </div>
-                  </div> */}
+
+
+
+
+            
+      
+
+
+
+                 
                 </div>
             </div>
   
-          
+            {isOpen && (
+        <div className="action-section">
+        <div className="price-container">
+          <div className="price-note">
+            Depending on configuration and materials
+          </div>
+        </div>
+  
+        <div className="cta-buttons">
+          <button className="btn-primary" onClick={openModal}>
+            Contact Sales
+          </button>
+          <button className="btn-outline">Download Brochure</button>
+        </div>
+  
+        {isOpen && (
+          <div className="modern-modal-overlay">
+            <div className="modern-modal">
+              <button className="close-btn" onClick={closeModal}>
+                &times;
+              </button>
+  
+              <h2 className="modal-title">Contact Our Sales Team</h2>
+              <p className="modal-subtitle">
+                Fill out the form below and our team will get in touch with you shortly.
+              </p>
+  
+              <form className="modern-form" onSubmit={handleSubmit}>
+                <div className="form-group">
+                  <label>Your Name</label>
+                  <input type="text" placeholder="John Doe" required />
+                </div>
+  
+                <div className="form-group">
+                  <label>Email Address</label>
+                  <input type="email" placeholder="john@example.com" required />
+                </div>
+  
+                <div className="form-group">
+                  <label>Phone Number</label>
+                  <input type="tel" placeholder="+91 9876543210" required />
+                </div>
+  
+                <div className="form-group">
+                  <label>Your Message</label>
+                  <textarea
+                    placeholder="Tell us how we can help..."
+                    rows="4"
+                    required
+                  />
+                </div>
+  
+                <div className="form-group captcha-container">
+                  <ReCAPTCHA
+                    sitekey={Site_Key}
+                    onChange={(value) => setCaptchaValue(value)}
+                  />
+                </div>
+  
+                <button type="submit" className="submit-btn">
+                  Send Inquiry
+                </button>
+              </form>
+            </div>
+          </div>
+        )}
+      </div>
+      )}
   
           </div>
   

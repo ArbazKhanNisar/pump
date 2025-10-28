@@ -71,3 +71,19 @@ export const getPagesMetaData = cache(async (name) => {
     return data.data || [];
   }
   
+  export async function fetchBlogsDetail(id) {
+    try {
+     
+  
+      const url = `${API_ENDPOINTS.BLOG_Detail}${id}`;
+      const res = await fetch(url, { cache: "no-store" });
+  
+      if (!res.ok) throw new Error("Failed to fetch blogs");
+  
+      const json = await res.json();
+      return json.data || [];
+    } catch (err) {
+      console.error("fetchBlogs error:", err);
+      return [];
+    }
+  }

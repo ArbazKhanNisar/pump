@@ -8,6 +8,7 @@ export const PUMP_BASE_URL_SERVER = "https://ghostwhite-alligator-811158.hosting
 export const API_ENDPOINTS = {
   BLOG_CATEGORY: `${PUMP_BASE_URL_SERVER}blog-category`,
   BLOG_LIST: `${PUMP_BASE_URL_SERVER}blogs`,
+  BLOG_Detail: `${PUMP_BASE_URL_SERVER}blog-detail/`,
   PRODUCT_DETAIL: (id) => `${PUMP_BASE_URL_SERVER}product-detail/${id}`,
   PRODUCT_List: (params) => `${PUMP_BASE_URL_SERVER}products?${params.toString()}`,
   PAGES: `${PUMP_BASE_URL_SERVER}pages`,
@@ -25,6 +26,9 @@ export const APP_NAME = "Inventomatic Seals India";
 
 export const logo="/img/isi.png";
 
+// recapcha
+export const Site_Key="6LeX7PkrAAAAAAOT_vtJg4QyJRRmbJP9SQQnc8Ls";
+export const secret_key="6LeX7PkrAAAAAOsmXSfj93RGBbsX5de4y4iVNK_D";
 
 export function cleanData(data) {
   if (Array.isArray(data)) {

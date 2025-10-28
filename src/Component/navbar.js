@@ -66,8 +66,8 @@ export default function Nav() {
       className="me-2"
     />
     <h1 
-      className="m-0 fw-bold text-primary fs-4 d-none d-sm-block"
-      style={{ whiteSpace: 'nowrap' }}
+      className="m-0 fw-bold  fs-4 d-none d-sm-block"
+      style={{ whiteSpace: 'nowrap' , color: '#0b2067' }}
     >
       Inventomatic Seals India
     </h1>

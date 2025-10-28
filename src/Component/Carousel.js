@@ -52,7 +52,7 @@ export default function HomePage({slides}) {
             <div className="container">
               <div className="row justify-content-center">
                 <div className="col-12 col-lg-10 text-center">
-                  <h5 className="text-light text-uppercase mb-3 slide-in-down">Welcome to Apex</h5>
+                  <h5 className="text-light text-uppercase mb-3 slide-in-down">Welcome to Inventomatic Seals</h5>
                   <h1 className="display-2 text-light mb-3 slide-in-down">{slide.title}</h1>
                 </div>
               </div>

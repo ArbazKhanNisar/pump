@@ -13,6 +13,7 @@ export async function generateMetadata() {
   };
 }
 
+
 export default async function page() {
   const pages = await getPagesMetaData('feature');
   const features= pages?.page_sections?.[0]?.content || {};
