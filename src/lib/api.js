@@ -73,10 +73,8 @@ export const getPagesMetaData = cache(async (name) => {
   
   export async function fetchBlogsDetail(id) {
     try {
-     
-  
-      const url = `${API_ENDPOINTS.BLOG_Detail}${id}`;
-      const res = await fetch(url, { cache: "no-store" });
+      const url = `${API_ENDPOINTS.BLOG_Detail(id)}`;
+      const res = await fetch(url);
   
       if (!res.ok) throw new Error("Failed to fetch blogs");
   

@@ -148,7 +148,7 @@ function BlogCard({ item }) {
           dangerouslySetInnerHTML={{ __html: item.sub_title }}
         ></p>
         <div className="mt-3">
-          <Link className="btn btn-primary" href={`/blog/${item.id}`}>
+          <Link className="btn btn-primary" href={`/blog/blogdetail/${item.id}`}>
             Read More
           </Link>
         </div>
