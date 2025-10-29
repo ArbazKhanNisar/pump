@@ -30,10 +30,7 @@ export default function BlogList({ categories }) {
     return () => clearTimeout(delay);
   }, [search, selectedCategory]);
 
-  // 🏁 Initial load
-  useEffect(() => {
-    handleFetch();
-  }, []);
+ 
 
   return (
     <main className="container py-5">
