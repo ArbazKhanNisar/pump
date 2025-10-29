@@ -1,5 +1,6 @@
 import DOMPurify from "isomorphic-dompurify";
 import './blog.css';
+import Link from "next/link";
 export default function BlogDetails({blog}) {
   const cleanDescription = DOMPurify.sanitize(blog?.description || "");
 
@@ -11,9 +12,9 @@ export default function BlogDetails({blog}) {
         <nav className="breadcrumbs mb-3">
           <ol className="breadcrumb justify-content-left">
             <li className="breadcrumb-item">
-              <a href="/" className="text-decoration-none text-primary fw-medium">
+              <Link href="/" className="text-decoration-none text-primary fw-medium">
                 Home
-              </a>
+              </Link>
             </li>
             <li className="breadcrumb-item active fw-semibold">Blog Details</li>
           </ol>
