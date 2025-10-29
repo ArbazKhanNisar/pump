@@ -43,6 +43,8 @@ export default function BlogDetails({blog}) {
   <img
     src={blog?.image}
     alt={blog?.title}
+   
+     sizes="(max-width: 768px) 100vw, 50vw"
     className="w-100 h-100 object-fit-cover"
     style={{
       objectPosition: "center",
