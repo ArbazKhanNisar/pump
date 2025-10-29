@@ -1,3 +1,4 @@
+"use client";
 import DOMPurify from "isomorphic-dompurify";
 import './blog.css';
 import Link from "next/link";
