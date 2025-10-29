@@ -11,14 +11,28 @@ export default function Footer() {
       <div className="container py-5">
         <div className="row g-5">
           {/* Logo + Socials */}
+
+          
           <div className="col-lg-3 col-md-6">
-            <h1 className="text-white mb-4">
-            <img width={120} height={120} src={logo} /> 
-            </h1>
-            <p>
-            Inventomatic Seals India <br/>
-            Precision in motion
-            </p>
+            
+            
+          <div className="footer-brand text-white">
+    <img
+      src={logo}
+      alt="Inventomatic Seals India Logo"
+      height={120}
+      className="img-fits mb-2"
+      style={{  width: "100%",
+        maxWidth: "180px", // optional limit
+        height: "auto",
+        objectFit: "contain", }}
+    />
+    <h5 className="fw-semibold text-light mb-1">Inventomatic Seals India</h5>
+    <p className="mb-0 text-light opacity-75">Precision in motion</p>
+  </div>
+
+
+
             <div className="d-flex pt-2">
               <Link
                 href="#"

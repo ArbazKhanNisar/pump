@@ -20,14 +20,14 @@ export default function Facts() {
       id: "03",
       title: "Mechanical Consultancy",
       desc: "Comprehensive mechanical consultancy services providing expert guidance on troubleshooting, process optimization, and selection of advanced sealing and rotary solutions tailored to client needs.",
-      img: "/img/mechanicalseals.jpeg",
+      img: "/img/mechanicalconsultancy.jpeg",
       delay: "0.5s",
     },
     {
       id: "04",
       title: "Custom Engineering Solutions",
       desc: "Tailor-made engineering solutions addressing unique industrial challenges — from specialized component fabrication to seamless process integration — driven by deep technical expertise and innovation.",
-      img: "/img/mechanicalconsultancy.jpeg",
+      img: "/img/customengineservise.jpeg",
       delay: "0.7s",
     },
   ];

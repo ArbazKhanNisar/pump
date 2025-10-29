@@ -59,7 +59,7 @@ export default function Nav() {
     onClick={handleNavClick}
   >
     <img 
-      width={80} 
+      width={"auto"} 
       height={80} 
       src={logo} 
       alt="Inventomatic Seals India Logo" 
