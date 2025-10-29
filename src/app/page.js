@@ -3,7 +3,6 @@ import { getPagesMetaData } from "@/lib/api";
 import HomeClient from "./HomeClient"; // 👇 Client component
 import { API_ENDPOINTS ,cleanData} from "@/constants/config";
 
-export const revalidate = 0; // Always fetch fresh data
 
 
 export async function generateMetadata() {

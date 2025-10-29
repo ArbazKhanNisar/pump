@@ -69,7 +69,7 @@ const TestimonialCarousel = ({testimonials}) => {
   return (
     <div className="col-lg-7" data-aos="fade-up" data-aos-delay="500">
       <div className="testimonial-carousel position-relative">
-        {(testimonials||{}).map((testimonial, index) => (
+        {testimonials.map((testimonial, index) => (
           <div
             key={index}
             className={`testimonial-item ${currentIndex === index ? "active" : "d-none"}`}

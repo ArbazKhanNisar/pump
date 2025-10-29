@@ -17,7 +17,7 @@ export async function generateMetadata() {
 
 export default async function page() {
   const pages = await getPagesMetaData('services');
-  const services= cleanData(pages?.page_sections?.[0]?.content) || {};
+  const services= cleanData(pages?.page_sections?.[0]?.content) ;
     return<>
     <div
       className="container-fluid page-header py-5 mb-5 text-center text-white"

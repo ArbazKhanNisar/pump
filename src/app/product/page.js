@@ -1,7 +1,6 @@
 
 import "./carListing.css";
 import PumpClient from './pumplisting.js';
-export const revalidate = 0; // Disable caching to always get fresh data
 import { API_ENDPOINTS } from "@/constants/config";
 import { getPagesMetaData,getPumps,getProductTypes,getIndustryTypes } from "@/lib/api";
 

@@ -41,7 +41,7 @@ export default function Features({features}) {
             </p>
 
             <div className="row gy-5 gx-4">
-              {(features?.features || {}).map((feature, index) => (
+              {features?.features .map((feature, index) => (
                 <div
                   className="col-sm-6 "
                   data-aos="fade-up"
