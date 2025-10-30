@@ -1,13 +1,30 @@
 "use client";
 
+"use client";
 import { useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { Site_Key } from "@/constants/config";
+import { API_ENDPOINTS } from "@/constants/config";
+const API_URL = `${API_ENDPOINTS.Contact}`; // 🔹 from .env.local
 
-export default function Contactsection() {
+export default function ContactSection() {
   const [captchaValue, setCaptchaValue] = useState(null);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  // 🔹 Handle Input Changes
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setFormData((prev) => ({ ...prev, [id]: value }));
+  };
+
+  // 🔹 Handle Submit
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!captchaValue) {
@@ -15,11 +32,37 @@ export default function Contactsection() {
       return;
     }
 
-    // ✅ Handle your form submission logic here
-    alert("Message sent successfully!");
+    setLoading(true);
+
+    try {
+      const res = await fetch(API_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        alert("✅ Message sent successfully!");
+        setFormData({ name: "", email: "", phone: "", message: "" });
+        setCaptchaValue(null);
+      } else {
+        alert(`❌ Failed to send message: ${data.message || "Server error"}`);
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("❌ Something went wrong. Please try again later.");
+    } finally {
+      setLoading(false);
+    }
   };
+
   return (
     <>
+      {/* 🔹 Header Section */}
       <div
         className="container-fluid page-header py-5 mb-5 text-center text-white"
         style={{
@@ -27,7 +70,6 @@ export default function Contactsection() {
             "linear-gradient(rgba(0, 0, 0, .65), rgba(0, 0, 0, .65)),url('/img/carousel-1.jpg') center/cover no-repeat",
         }}
         data-aos="fade-in"
-        data-aos-delay="100"
       >
         <div className="container py-5">
           <h1
@@ -45,19 +87,11 @@ export default function Contactsection() {
           >
             <ol className="breadcrumb mb-0">
               <li className="breadcrumb-item">
-                <a className="text-white" href="#">
+                <a className="text-white" href="/">
                   Home
                 </a>
               </li>
-              <li className="breadcrumb-item">
-                <a className="text-white" href="#">
-                  Pages
-                </a>
-              </li>
-              <li
-                className="breadcrumb-item text-primary active"
-                aria-current="page"
-              >
+              <li className="breadcrumb-item text-primary active" aria-current="page">
                 Contact Us
               </li>
             </ol>
@@ -65,45 +99,11 @@ export default function Contactsection() {
         </div>
       </div>
 
+      {/* 🔹 Contact Section */}
       <div className="container-xxl py-5">
         <div className="container">
           <div className="row g-5">
-
-            {/* Team Member 1 */}
-            {/* <div className="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-            <div className="row g-4 align-items-center">
-              <div className="col-sm-6">
-                <img className="img-fluid rounded" src="/img/team-1.jpg" alt="Team Member" />
-              </div>
-              <div className="col-sm-6">
-                <h3 className="mb-0">Full Name</h3>
-                <p>Head of Sales</p>
-                <h6>Contact Details</h6>
-                <p>Lorem ipsum dolor sit amet conse elit sed eiu smod lab ore.</p>
-                <p className="mb-0">📞 +012 345 6789</p>
-                <p className="mb-0">✉️ sales@example.com</p>
-              </div>
-            </div>
-          </div>
-          /* Team Member 2 
-          <div className="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-            <div className="row g-4 align-items-center">
-              <div className="col-sm-6">
-                <img className="img-fluid rounded" src="/img/team-2.jpg" alt="Team Member" />
-              </div>
-              <div className="col-sm-6">
-                <h3 className="mb-0">Full Name</h3>
-                <p>Head of Marketing</p>
-                <h6>Contact Details</h6>
-                <p>Lorem ipsum dolor sit amet conse elit sed eiu smod lab ore.</p>
-                <p className="mb-0">📞 +012 345 6789</p>
-                <p className="mb-0">✉️ marketing@example.com</p>
-              </div>
-            </div>
-          </div> */}
-
             {/* Google Map */}
-
             <div
               className="col-lg-6"
               style={{ minHeight: "450px" }}
@@ -132,19 +132,6 @@ export default function Contactsection() {
                 </h1>
               </div>
 
-              <p className="mb-4">
-                The contact form is currently inactive. Get a functional and
-                working contact form with Ajax &amp; PHP in a few minutes.{" "}
-                <a
-                  href="https://htmlcodex.com/contact-form"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Download Now
-                </a>
-                .
-              </p>
-
               <form onSubmit={handleSubmit}>
                 <div className="row g-3">
                   <div className="col-md-6">
@@ -154,6 +141,8 @@ export default function Contactsection() {
                         className="form-control border-0 bg-light"
                         id="name"
                         placeholder="Your Name"
+                        value={formData.name}
+                        onChange={handleChange}
                         required
                       />
                       <label htmlFor="name">Your Name</label>
@@ -167,6 +156,8 @@ export default function Contactsection() {
                         className="form-control border-0 bg-light"
                         id="email"
                         placeholder="Your Email"
+                        value={formData.email}
+                        onChange={handleChange}
                         required
                       />
                       <label htmlFor="email">Your Email</label>
@@ -178,11 +169,13 @@ export default function Contactsection() {
                       <input
                         type="text"
                         className="form-control border-0 bg-light"
-                        id="subject"
-                        placeholder="Subject"
+                        id="phone"
+                        placeholder="Your Phone"
+                        value={formData.phone}
+                        onChange={handleChange}
                         required
                       />
-                      <label htmlFor="subject">Subject</label>
+                      <label htmlFor="phone">Phone</label>
                     </div>
                   </div>
 
@@ -193,13 +186,15 @@ export default function Contactsection() {
                         placeholder="Leave a message here"
                         id="message"
                         style={{ height: "150px" }}
+                        value={formData.message}
+                        onChange={handleChange}
                         required
                       ></textarea>
                       <label htmlFor="message">Message</label>
                     </div>
                   </div>
 
-                  {/* ✅ reCAPTCHA Section */}
+                  {/* ✅ reCAPTCHA */}
                   <div className="col-12 d-flex justify-content-center mt-2">
                     <ReCAPTCHA
                       sitekey={Site_Key}
@@ -211,8 +206,9 @@ export default function Contactsection() {
                     <button
                       className="btn btn-primary py-3 px-5 mt-3"
                       type="submit"
+                      disabled={loading}
                     >
-                      Send Message
+                      {loading ? "Sending..." : "Send Message"}
                     </button>
                   </div>
                 </div>
@@ -224,3 +220,4 @@ export default function Contactsection() {
     </>
   );
 }
+

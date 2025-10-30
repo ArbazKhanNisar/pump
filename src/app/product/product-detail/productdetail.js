@@ -5,6 +5,7 @@ import Image from "next/image";
 import "./productdetailstyle.css";
 import ReCAPTCHA from "react-google-recaptcha";
 import { Site_Key } from "@/constants/config";
+import { API_ENDPOINTS } from "@/constants/config";
 
   const relatedProducts = [
     {
@@ -38,22 +39,78 @@ import { Site_Key } from "@/constants/config";
     const [activeTab, setActiveTab] = useState("description");
     const [isOpen, setIsOpen] = useState(false);
     const [captchaValue, setCaptchaValue] = useState(null);
-
+    const [loading, setLoading] = useState(false);
+    const [formData, setFormData] = useState({
+      name: "",
+      email: "",
+      phone: "",
+      message: "",
+    });
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
 
-  const handleSubmit = (e) => {
+  const handleChange = (e) => {
+    const { type, value } = e.target;
+    const field = e.target.type === "textarea" ? "message" : e.target.type;
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.type === "text" ? "name" : field]: value,
+    }));
+  };
+
+  // Better: handle by id or name (clearer)
+  const handleFieldChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  // 🔹 Handle Submit
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!captchaValue) {
-      alert("Please verify the CAPTCHA before submitting.");
+      alert("⚠️ Please complete the CAPTCHA before submitting.");
       return;
     }
 
-    // ✅ Submit your form data to backend here
-    alert("Form submitted successfully!");
-    setIsOpen(false);
+    setLoading(true);
+
+    try {
+      const res = await fetch(API_ENDPOINTS.PRODUCT_Enquiry, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          product_id: product.id,
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          message: formData.message,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        alert("✅ Inquiry sent successfully!");
+        setFormData({ name: "", email: "", phone: "", message: "" });
+        setCaptchaValue(null);
+        closeModal();
+      } else {
+        alert(`❌ Failed to send inquiry: ${data.message || "Server error"}`);
+      }
+    } catch (error) {
+      console.error("Error submitting inquiry:", error);
+      alert("❌ Something went wrong. Please try again later.");
+    } finally {
+      setLoading(false);
+    }
   };
+
+
+
+
+
+
     return (
       <div className="container">
         <main className="product-detail">
@@ -131,54 +188,79 @@ import { Site_Key } from "@/constants/config";
   
         {isOpen && (
           <div className="modern-modal-overlay">
-            <div className="modern-modal">
-              <button className="close-btn" onClick={closeModal}>
-                &times;
+          <div className="modern-modal">
+            <button className="close-btn" onClick={closeModal}>
+              &times;
+            </button>
+
+            <h2 className="modal-title">Contact Our Sales Team</h2>
+            <p className="modal-subtitle">
+              Fill out the form below and our team will get in touch with you shortly.
+            </p>
+
+            <form className="modern-form" onSubmit={handleSubmit}>
+              <div className="form-group">
+                <label>Your Name</label>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="John Doe"
+                  required
+                  value={formData.name}
+                  onChange={handleFieldChange}
+                />
+              </div>
+
+              <div className="form-group">
+                <label>Email Address</label>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="john@example.com"
+                  required
+                  value={formData.email}
+                  onChange={handleFieldChange}
+                />
+              </div>
+
+              <div className="form-group">
+                <label>Phone Number</label>
+                <input
+                  type="tel"
+                  name="phone"
+                  placeholder="+91 9876543210"
+                  required
+                  value={formData.phone}
+                  onChange={handleFieldChange}
+                />
+              </div>
+
+              <div className="form-group">
+                <label>Your Message</label>
+                <textarea
+                  name="message"
+                  placeholder="Tell us how we can help..."
+                  rows="4"
+                  required
+                  value={formData.message}
+                  onChange={handleFieldChange}
+                />
+              </div>
+
+              <div className="form-group captcha-container">
+                <ReCAPTCHA
+                  sitekey={Site_Key}
+                  onChange={(value) => setCaptchaValue(value)}
+                />
+              </div>
+
+              <button type="submit" className="submit-btn" disabled={loading}>
+                {loading ? "Sending..." : "Send Inquiry"}
               </button>
-  
-              <h2 className="modal-title">Contact Our Sales Team</h2>
-              <p className="modal-subtitle">
-                Fill out the form below and our team will get in touch with you shortly.
-              </p>
-  
-              <form className="modern-form" onSubmit={handleSubmit}>
-                <div className="form-group">
-                  <label>Your Name</label>
-                  <input type="text" placeholder="John Doe" required />
-                </div>
-  
-                <div className="form-group">
-                  <label>Email Address</label>
-                  <input type="email" placeholder="john@example.com" required />
-                </div>
-  
-                <div className="form-group">
-                  <label>Phone Number</label>
-                  <input type="tel" placeholder="+91 9876543210" required />
-                </div>
-  
-                <div className="form-group">
-                  <label>Your Message</label>
-                  <textarea
-                    placeholder="Tell us how we can help..."
-                    rows="4"
-                    required
-                  />
-                </div>
-  
-                <div className="form-group captcha-container">
-                  <ReCAPTCHA
-                    sitekey={Site_Key}
-                    onChange={(value) => setCaptchaValue(value)}
-                  />
-                </div>
-  
-                <button type="submit" className="submit-btn">
-                  Send Inquiry
-                </button>
-              </form>
-            </div>
+            </form>
           </div>
+        </div>
+      
         )}
       </div>
       )}

@@ -2,7 +2,45 @@
 
 import Link from "next/link";
 import { logo ,APP_NAME } from "@/constants/config";
+import { useState } from "react";
+import { API_ENDPOINTS } from "@/constants/config";
 export default function Footer() {
+  const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState(null);
+
+  const handleSubscribe = async () => {
+    if (!email.trim()) {
+      setMessage({ type: "error", text: "Please enter your email address." });
+      return;
+    }
+    setLoading(true);
+    setMessage(null);
+    try {
+      const res = await fetch(API_ENDPOINTS.Newsletter, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        setMessage({ type: "success", text: "Subscribed successfully! Thank you." });
+        setEmail("");
+      } else {
+        setMessage({ type: "error", text: data.message || "Subscription failed. Try again." });
+      }
+    } catch (err) {
+      setMessage({ type: "error", text: "Something went wrong. Please try again later." });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+
   return (
     <div
       className="container-fluid bg-dark footer mt-5 pt-5 " data-aos="fade-up"
@@ -97,22 +135,39 @@ export default function Footer() {
 
           {/* Newsletter */}
           <div className="col-lg-3 col-md-6">
-            <h4 className="text-light mb-4">Newsletter</h4>
-            <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
-            <div className="position-relative mx-auto" style={{ maxWidth: 400 }}>
-              <input
-                className="form-control bg-transparent w-100 py-3 ps-4 pe-5"
-                type="text"
-                placeholder="Your email"
-              />
-              <button
-                type="button"
-                className="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2"
-              >
-                SignUp
-              </button>
-            </div>
-          </div>
+      <h4 className="text-light mb-4">Newsletter</h4>
+      <p>Stay updated with our latest innovations and sealing solutions. Subscribe now!</p>
+
+      <div className="position-relative mx-auto" style={{ maxWidth: 400 }}>
+        <input
+          className="form-control bg-transparent w-100 py-3 ps-4 pe-5 text-light"
+          type="email"
+          placeholder="Enter your email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          disabled={loading}
+          required
+        />
+        <button
+          type="button"
+          onClick={handleSubscribe}
+          className="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2"
+          disabled={loading}
+        >
+          {loading ? "..." : "Subscribe"}
+        </button>
+      </div>
+
+      {message && (
+        <p
+          className={`mt-2 small ${
+            message.type === "success" ? "text-success" : "text-danger"
+          }`}
+        >
+          {message.text}
+        </p>
+      )}
+    </div>
         </div>
       </div>
 

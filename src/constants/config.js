@@ -7,7 +7,10 @@ export const PUMP_BASE_URL_SERVER = "https://ghostwhite-alligator-811158.hosting
 // API Endpoints
 export const API_ENDPOINTS = {
   BLOG_CATEGORY: `${PUMP_BASE_URL_SERVER}blog-category`,
+  Contact: `${PUMP_BASE_URL_SERVER}contact`,
+  PRODUCT_Enquiry: `${PUMP_BASE_URL_SERVER}product-enquiry`,
   BLOG_LIST: `${PUMP_BASE_URL_SERVER}blogs`,
+  Newsletter:`${PUMP_BASE_URL_SERVER}newsletter/subscribe`,
   BLOG_Detail: (id)=>`${PUMP_BASE_URL_SERVER}blog-detail/${id}`,
   PRODUCT_DETAIL: (id) => `${PUMP_BASE_URL_SERVER}product-detail/${id}`,
   PRODUCT_List: (params) => `${PUMP_BASE_URL_SERVER}products?${params.toString()}`,
