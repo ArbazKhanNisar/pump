@@ -1,6 +1,7 @@
 
 import { getPagesMetaData } from "@/lib/api";
 import Contactsection from './contact.js';
+import { IMAGE_DOMAINS } from "@/constants/config.js";
 export async function generateMetadata() {
   const pages = await getPagesMetaData('contact');
   const home = pages || {};
@@ -12,8 +13,11 @@ export async function generateMetadata() {
   };
 }
 
-export default function page(params) {
-   return <Contactsection />
+export default async function page(params) {
+  const pages = await getPagesMetaData('contact');
+  const contact= pages?.page_sections?.[0]?.content || {};
+  console.log(contact);
+   return <Contactsection url={IMAGE_DOMAINS(contact.banner_image)} />
 };
 
 

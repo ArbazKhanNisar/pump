@@ -122,14 +122,16 @@ export default function Footer() {
             <Link href="/contact" className="btn btn-link">
               Contact Us
             </Link>
+
+
             <Link href="/service" className="btn btn-link">
               Our Services
             </Link>
-            <Link href="/terms" className="btn btn-link">
-              Terms & Condition
+            <Link href="/product" className="btn btn-link">
+             Products
             </Link>
-            <Link href="/support" className="btn btn-link">
-              Support
+            <Link href="/blog" className="btn btn-link">
+            Blog
             </Link>
           </div>
 

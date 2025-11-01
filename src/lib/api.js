@@ -1,19 +1,21 @@
 import { API_ENDPOINTS } from "@/constants/config";
 import { cache } from "react";
 
-export async function fetchBlogs({ category = "", title = "" }) {
+export async function fetchBlogs({ category = "", title = "" ,page=1}) {
     try {
       const params = new URLSearchParams();
+      console.log(page);
+      params.append("page",page)
       if (category && category !== "All") params.append("blog_category_id", category);
       if (title) params.append("title", title);
-  
+
       const url = `${API_ENDPOINTS.BLOG_LIST}?${params.toString()}`;
       const res = await fetch(url, { cache: "no-store" });
   
       if (!res.ok) throw new Error("Failed to fetch blogs");
   
       const json = await res.json();
-      return json.data || [];
+      return json || {};
     } catch (err) {
       console.error("fetchBlogs error:", err);
       return [];

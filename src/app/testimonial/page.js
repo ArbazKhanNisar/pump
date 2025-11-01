@@ -1,5 +1,6 @@
 import Testimonial from "@/Component/testimonial";
 import { getPagesMetaData } from "@/lib/api";
+import { IMAGE_DOMAINS } from "@/constants/config";
 import { cleanData} from "@/constants/config";
 export async function generateMetadata() {
   const pages = await getPagesMetaData('testimonial');
@@ -17,7 +18,7 @@ export default async function page(params) {
     return  <>
     <div
       className="container-fluid page-header py-5 mb-5 text-center text-white"
-      style={{ background: "linear-gradient(rgba(0, 0, 0, .65), rgba(0, 0, 0, .65)),url('/img/carousel-1.jpg') center/cover no-repeat" }}
+      style={{ background: `linear-gradient(rgba(0, 0, 0, .65), rgba(0, 0, 0, .65)),url('${IMAGE_DOMAINS(testimonial.banner_image)}') center/cover no-repeat` }}
       data-aos="fade-in"
       data-aos-delay="100"
     >

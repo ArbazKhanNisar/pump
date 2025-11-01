@@ -131,12 +131,50 @@ footer i:hover {
 }
 
 /* Pagination */
-.pagination .page-link {
-  border-radius: 5px;
-  margin: 0 3px;
-  color: #37517e;
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin-top: 30px;
+  flex-wrap: wrap;
 }
-.pagination .page-item.active .page-link {
-  background: #47b2e4;
-  border-color: #47b2e4;
+
+.page-btn,
+.nav-btn {
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  color: #333;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: all 0.25s ease;
+}
+
+.page-btn:hover,
+.nav-btn:hover {
+  background: #007bff;
+  color: #fff;
+  border-color: #007bff;
+}
+
+.page-btn.active {
+  background: #007bff;
+  color: #fff;
+  font-weight: 600;
+  cursor: default;
+}
+
+.page-btn:disabled,
+.nav-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.dots {
+  padding: 8px 10px;
+  color: #888;
+  font-weight: bold;
+  user-select: none;
 }

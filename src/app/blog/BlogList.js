@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { fetchBlogs } from "@/lib/api";
@@ -10,15 +10,25 @@ export default function BlogList({ categories }) {
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
   // 🧠 Fetch blogs dynamically
-  const handleFetch = async () => {
+  const handleFetch = async (page) => {
     setLoading(true);
     const data = await fetchBlogs({
       category: selectedCategory,
       title: search,
+      page:page||1
     });
-    setBlogs(data);
+    if(page){
+
+    }
+    else{
+      setCurrentPage(data?.current_page || 1);
+      setTotalPages(data?.last_page || 1);
+    }
+    setBlogs(data?.data||[]);
     setLoading(false);
   };
 
@@ -31,6 +41,10 @@ export default function BlogList({ categories }) {
   }, [search, selectedCategory]);
 
  
+  useEffect( () => {
+    handleFetch(currentPage);
+  }, [currentPage]);
+
 
   return (
     <main className="container py-5">
@@ -62,6 +76,51 @@ export default function BlogList({ categories }) {
               ))}
             </div>
           )}
+
+
+{totalPages > 1 && (
+  <div className="pagination">
+    <button
+      className="nav-btn"
+      onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
+      disabled={currentPage === 1}
+    >
+      ‹ Prev
+    </button>
+
+    {Array.from({ length: totalPages }, (_, i) => i + 1)
+      .filter(
+        (page) =>
+          page === 1 ||
+          page === totalPages ||
+          (page >= currentPage - 1 && page <= currentPage + 1)
+      )
+      .map((page, index, array) => {
+        const prev = array[index - 1];
+        const showDots = prev && page - prev > 1;
+
+        return (
+          <React.Fragment key={page}>
+            {showDots && <span className="dots">...</span>}
+            <button
+              className={`page-btn ${currentPage === page ? "active" : ""}`}
+              onClick={() => setCurrentPage(page)}
+            >
+              {page}
+            </button>
+          </React.Fragment>
+        );
+      })}
+
+    <button
+      className="nav-btn"
+      onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
+      disabled={currentPage === totalPages}
+    >
+      Next ›
+    </button>
+  </div>
+)}
         </div>
 
         {/* Right Section (Sidebar) */}

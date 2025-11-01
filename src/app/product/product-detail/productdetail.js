@@ -6,7 +6,7 @@ import "./productdetailstyle.css";
 import ReCAPTCHA from "react-google-recaptcha";
 import { Site_Key } from "@/constants/config";
 import { API_ENDPOINTS } from "@/constants/config";
-
+import Link from "next/link";
   const relatedProducts = [
     {
       id: 1,
@@ -75,6 +75,10 @@ import { API_ENDPOINTS } from "@/constants/config";
 
     setLoading(true);
 
+
+    
+
+
     try {
       const res = await fetch(API_ENDPOINTS.PRODUCT_Enquiry, {
         method: "POST",
@@ -107,8 +111,30 @@ import { API_ENDPOINTS } from "@/constants/config";
   };
 
 
-
-
+   function AutoLinkText({ text = "" }) {
+    // Ensure text is always a string
+    if (typeof text !== "string") return null;
+  
+    const parts = text.split(/(\s+)/).map((word, i) => {
+      const isLink = /^(https?:\/\/[^\s]+)$/.test(word);
+      if (isLink) {
+        return (
+          <Link
+            key={i}
+            href={word}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-600 underline"
+          >
+            {word}
+          </Link>
+        );
+      }
+      return word;
+    });
+  
+    return <p>{parts}</p>;
+  }
 
 
     return (
@@ -187,7 +213,14 @@ import { API_ENDPOINTS } from "@/constants/config";
         </div>
   
         {isOpen && (
-          <div className="modern-modal-overlay">
+          <div className="modern-modal-overlay"
+          onClick={(e) => {
+            // Close only if user clicks the overlay (not inside the modal)
+            if (e.target.classList.contains("modern-modal-overlay")) {
+              closeModal();
+            }
+          }}
+          >
           <div className="modern-modal">
             <button className="close-btn" onClick={closeModal}>
               &times;
@@ -288,12 +321,14 @@ import { API_ENDPOINTS } from "@/constants/config";
                     {product.product_specifications.map((spec) => (
                       <div key={spec.id} className="spec-row">
                         <div className="spec-name">{spec.name}</div>
-                        <div className="spec-value">{spec.value}</div>
+                        <div className="spec-value">  { spec.value}</div>
                       </div>
                     ))}
                   </div>
                 </div>
               )}
+  
+
   
               {activeTab === "applications" && (
                 <div className="tab-panel">
@@ -303,7 +338,8 @@ import { API_ENDPOINTS } from "@/constants/config";
                       <h3>{app.title}</h3>
                       <ul>
                         {app.points.map((point, i) => (
-                          <li key={i}>{point}</li>
+                          <li key={i}> <AutoLinkText text={point} /></li>
+
                         ))}
                       </ul>
                     </div>
@@ -330,7 +366,7 @@ import { API_ENDPOINTS } from "@/constants/config";
                       <h3>{res.title}</h3>
                       <ul>
                         {res.points.map((p, i) => (
-                          <li key={i}>{p}</li>
+                          <li key={i}><AutoLinkText text={p} /></li>
                         ))}
                       </ul>
                     </div>
@@ -339,7 +375,7 @@ import { API_ENDPOINTS } from "@/constants/config";
               )}
             </div>
           </div>
-          <div className="related-products">
+<div className="related-products">
     <h2>Related Products</h2>
     <div className="related-grid">
       {relatedProducts.map((product) => (

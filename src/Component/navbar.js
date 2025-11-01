@@ -93,8 +93,8 @@ export default function Nav() {
             <Link href="/about" className={`nav-item nav-link ${isActive("/about")}`} onClick={handleNavClick}>
               About Us
             </Link>
-            <Link href="/service" className={`nav-item nav-link ${isActive("/service")}`} onClick={handleNavClick}>
-              Our Services
+            <Link href="/product"   className={`nav-item nav-link ${isActive("/service")}`} onClick={handleNavClick}>
+              Products
             </Link>
 
             {/* Dropdown */}
@@ -114,7 +114,7 @@ export default function Nav() {
                 <Link href="/appointment" className="dropdown-item">Appointment</Link>
                 <Link href="/testimonial" className="dropdown-item">Testimonial</Link>
                 <Link href="/blog" className="dropdown-item">Blogs</Link>
-                <Link href="/product" className="dropdown-item">Product Page</Link>
+                <Link href="/service" className="dropdown-item">Services</Link>
               </div>
             </div>
 

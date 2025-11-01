@@ -8,7 +8,7 @@ import Link from "next/link";
 import { API_ENDPOINTS } from "@/constants/config";
 const API_URL = `${API_ENDPOINTS.Contact}`; // 🔹 from .env.local
 
-export default function ContactSection() {
+export default function ContactSection({url}) {
   const [captchaValue, setCaptchaValue] = useState(null);
   const [formData, setFormData] = useState({
     name: "",
@@ -68,7 +68,7 @@ export default function ContactSection() {
         className="container-fluid page-header py-5 mb-5 text-center text-white"
         style={{
           background:
-            "linear-gradient(rgba(0, 0, 0, .65), rgba(0, 0, 0, .65)),url('/img/carousel-1.jpg') center/cover no-repeat",
+            `linear-gradient(rgba(0, 0, 0, .65), rgba(0, 0, 0, .65)),url('${url}') center/cover no-repeat`,
         }}
         data-aos="fade-in"
       >

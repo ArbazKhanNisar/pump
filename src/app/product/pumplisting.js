@@ -27,10 +27,16 @@ export default function PumpClient({ Ptypes, Itypes }) {
   const [model, setModel] = useState("All");
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [showOnPage, setShowOnPage] = useState(9);
+  const [totalPages, setTotalPages] = useState(1);
 
-  const industryTypes = useMemo(() => ["All", ...uniqueValues(Itypes, "name")], [Itypes]);
-  const models = useMemo(() => ["All", ...uniqueValues(Ptypes, "name")], [Ptypes]);
+  const industryTypes = useMemo(
+    () => ["All", ...uniqueValues(Itypes, "name")],
+    [Itypes]
+  );
+  const models = useMemo(
+    () => ["All", ...uniqueValues(Ptypes, "name")],
+    [Ptypes]
+  );
 
   // ✅ Get matching IDs by name
   const getIndustryIdByName = (name) => Itypes.find((i) => i.name === name)?.id;
@@ -70,7 +76,8 @@ export default function PumpClient({ Ptypes, Itypes }) {
         const data = await res.json();
 
         setPumps(data?.data || []);
-        setCurrentPage(1);
+        setCurrentPage(data?.current_page || 1);
+        setTotalPages(data?.last_page || 1);
       } catch (err) {
         console.error("Error fetching pumps:", err);
         setPumps([]);
@@ -82,13 +89,46 @@ export default function PumpClient({ Ptypes, Itypes }) {
     fetchPumps();
   }, [debouncedSearch, type, model]);
 
-  // ✅ Pagination
-  const totalPages = Math.ceil(pumps.length / showOnPage);
-  const startIndex = (currentPage - 1) * showOnPage;
-  const visiblePumps = pumps.slice(startIndex, startIndex + showOnPage);
+ 
+
+  useEffect(() => {
+    async function fetchPumps() {
+      setLoading(true);
+      try {
+        const params = new URLSearchParams();
+        params.append("page", currentPage);
+        if (debouncedSearch) params.append("title", debouncedSearch);
+        if (type !== "All") {
+          const typeId = getIndustryIdByName(type);
+          if (typeId) params.append("industry_type_id", typeId);
+        }
+        if (model !== "All") {
+          const modelId = getProductIdByName(model);
+          if (modelId) params.append("product_type_id", modelId);
+        }
+
+        const url = `${API_ENDPOINTS.PRODUCT_List(params)}`;
+        console.log("API URL:", url);
+
+        const res = await fetch(url, { cache: "no-store" });
+        if (!res.ok) throw new Error("Failed to fetch pumps");
+        const data = await res.json();
+
+        setPumps(data?.data || []);
+      } catch (err) {
+        console.error("Error fetching pumps:", err);
+        setPumps([]);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchPumps();
+  }, [currentPage]);
 
   const resetFilters = () => {
     setSearch("");
+    ``;
     setType("All");
     setModel("All");
     setCurrentPage(1);
@@ -146,19 +186,26 @@ export default function PumpClient({ Ptypes, Itypes }) {
           ) : (
             <>
               <div className="pump-grid">
-                {visiblePumps.length === 0 && (
-                  <div className="no-results">No pumps found matching your criteria.</div>
+                {pumps.length === 0 && (
+                  <div className="no-results">
+                    No pumps found matching your criteria.
+                  </div>
                 )}
 
-                {visiblePumps.map((p) => (
-                  <Link key={p.id} href={`/product/product-detail/${p.id}`} passHref>
+                {pumps.map((p) => (
+                  <Link
+                    key={p.id}
+                    href={`/product/product-detail/${p.id}`}
+                    passHref
+                  >
                     <article className="pump-card">
                       <div className="card-media">
                         <img
                           src={p.image}
                           alt={p.title}
                           onError={(e) => {
-                            e.currentTarget.src = "/assets/img/blog/blog-post-3.webp";
+                            e.currentTarget.src =
+                              "/assets/img/blog/blog-post-3.webp";
                           }}
                         />
                       </div>
@@ -180,18 +227,48 @@ export default function PumpClient({ Ptypes, Itypes }) {
               </div>
 
               {totalPages > 1 && (
-                <div className="pagination">
-                  {Array.from({ length: totalPages }, (_, i) => (
-                    <button
-                      key={i + 1}
-                      className={`page-btn ${currentPage === i + 1 ? "active" : ""}`}
-                      onClick={() => setCurrentPage(i + 1)}
-                    >
-                      {i + 1}
-                    </button>
-                  ))}
-                </div>
-              )}
+  <div className="pagination">
+    <button
+      className="nav-btn"
+      onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
+      disabled={currentPage === 1}
+    >
+      ‹ Prev
+    </button>
+
+    {Array.from({ length: totalPages }, (_, i) => i + 1)
+      .filter(
+        (page) =>
+          page === 1 ||
+          page === totalPages ||
+          (page >= currentPage - 1 && page <= currentPage + 1)
+      )
+      .map((page, index, array) => {
+        const prev = array[index - 1];
+        const showDots = prev && page - prev > 1;
+
+        return (
+          <React.Fragment key={page}>
+            {showDots && <span className="dots">...</span>}
+            <button
+              className={`page-btn ${currentPage === page ? "active" : ""}`}
+              onClick={() => setCurrentPage(page)}
+            >
+              {page}
+            </button>
+          </React.Fragment>
+        );
+      })}
+
+    <button
+      className="nav-btn"
+      onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
+      disabled={currentPage === totalPages}
+    >
+      Next ›
+    </button>
+  </div>
+)}
             </>
           )}
         </section>
