@@ -4,6 +4,7 @@
 import { useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { Site_Key } from "@/constants/config";
+import Link from "next/link";
 import { API_ENDPOINTS } from "@/constants/config";
 const API_URL = `${API_ENDPOINTS.Contact}`; // 🔹 from .env.local
 
@@ -87,9 +88,9 @@ export default function ContactSection() {
           >
             <ol className="breadcrumb mb-0">
               <li className="breadcrumb-item">
-                <a className="text-white" href="/">
+                <Link className="text-white" href="/">
                   Home
-                </a>
+                </Link>
               </li>
               <li className="breadcrumb-item text-primary active" aria-current="page">
                 Contact Us
