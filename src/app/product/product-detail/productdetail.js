@@ -5,37 +5,9 @@ import Image from "next/image";
 import "./productdetailstyle.css";
 import ReCAPTCHA from "react-google-recaptcha";
 import { Site_Key } from "@/constants/config";
-import { API_ENDPOINTS } from "@/constants/config";
+import { API_ENDPOINTS,relatedProducts } from "@/constants/config";
 import Link from "next/link";
-const relatedProducts = [
-  {
-    id: 1,
-    title: "Title 11111",
-    model: "Model11 111111",
-    type: "Type11 111111111",
-    drive: "Drive1111111111",
-    image:
-      "https://ghostwhite-alligator-811158.hostingersite.com/storage/product/1758746380_3.sm.webp",
-  },
-  {
-    id: 2,
-    title: "Title 22222",
-    model: "Model22 222222",
-    type: "Type22 222222222",
-    drive: "Drive2222222222",
-    image:
-      "https://ghostwhite-alligator-811158.hostingersite.com/storage/product/1758746963_2.sm.webp",
-  },
-  {
-    id: 3,
-    title: "Title 33333",
-    model: "Model33 333333",
-    type: "Type33 333333333",
-    drive: "Drive3333333333",
-    image:
-      "https://ghostwhite-alligator-811158.hostingersite.com/storage/product/1758926060_2.sm.webp",
-  },
-];
+import { usePumpContext } from "@/context/PumpContext";
 
 export default function ProductDetailProductDetail({ product }) {
   const [activeTab, setActiveTab] = useState("description");
@@ -50,7 +22,7 @@ export default function ProductDetailProductDetail({ product }) {
   });
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
-
+  const { relatedPumps } = usePumpContext();
   const handleChange = (e) => {
     const { type, value } = e.target;
     const field = e.target.type === "textarea" ? "message" : e.target.type;
@@ -148,28 +120,40 @@ export default function ProductDetailProductDetail({ product }) {
     }
   };
 
-  // Auto-scroll the selected thumbnail into view when selectedImage changes
-  useEffect(() => {
-    const el = thumbsRef.current;
-    if (!el) return;
-    // find the selected child (by comparing img srcs)
-    const children = Array.from(el.children);
-    const selectedChild = children.find((c) => {
-      const img = c.querySelector("img");
-      return (
-        img?.src === selectedImage || img?.getAttribute("src") === selectedImage
-      );
-    });
-    if (selectedChild) {
-      // scroll so the selected thumb is centered (if possible)
-      const childLeft = selectedChild.offsetLeft;
-      const childWidth = selectedChild.offsetWidth;
-      const containerWidth = el.clientWidth;
-      const targetScrollLeft = childLeft - containerWidth / 2 + childWidth / 2;
-      el.scrollTo({ left: targetScrollLeft, behavior: "smooth" });
-    }
-  }, [selectedImage]);
+// Smooth scroll selected thumbnail into view
+useEffect(() => {
+  const el = thumbsRef.current;
+  if (!el) return;
 
+  const children = Array.from(el.children);
+  const selectedChild = children.find((c) => {
+    const img = c.querySelector("img");
+    return (
+      img?.src === selectedImage || img?.getAttribute("src") === selectedImage
+    );
+  });
+
+  if (selectedChild) {
+    const childLeft = selectedChild.offsetLeft;
+    const childWidth = selectedChild.offsetWidth;
+    const containerWidth = el.clientWidth;
+    const targetScrollLeft = childLeft - containerWidth / 2 + childWidth / 2;
+    el.scrollTo({ left: targetScrollLeft, behavior: "smooth" });
+  }
+}, [selectedImage]);
+
+ // Next & Prev controls
+ const handleNext = () => {
+  const currentIndex = allImages.indexOf(selectedImage);
+  const nextIndex = (currentIndex + 1) % allImages.length;
+  setSelectedImage(allImages[nextIndex]);
+};
+
+const handlePrev = () => {
+  const currentIndex = allImages.indexOf(selectedImage);
+  const prevIndex = (currentIndex - 1 + allImages.length) % allImages.length;
+  setSelectedImage(allImages[prevIndex]);
+};
   return (
     <div className="container">
       <main className="product-detail">
@@ -205,11 +189,12 @@ export default function ProductDetailProductDetail({ product }) {
                   style={{ position: "relative" }}
                 >
                   {/* Left arrow — only show if scrolling is needed */}
-                  {allImages.length > 3 && (
+                  {allImages.length > 4 && (
                     <button
                       type="button"
                       className="btn btn-sm btn-light"
                       onClick={() => {
+                        handlePrev();
                         const el = thumbsRef.current;
                         if (el) el.scrollBy({ left: -220, behavior: "smooth" });
                       }}
@@ -269,11 +254,12 @@ export default function ProductDetailProductDetail({ product }) {
                   </div>
 
                   {/* Right arrow — only show if scrolling is needed */}
-                  {allImages.length > 3 && (
+                  {allImages.length > 4 && (
                     <button
                       type="button"
                       className="btn btn-sm btn-light"
                       onClick={() => {
+                        handleNext();
                         const el = thumbsRef.current;
                         if (el) el.scrollBy({ left: 220, behavior: "smooth" });
                       }}
@@ -544,11 +530,17 @@ export default function ProductDetailProductDetail({ product }) {
             )}
           </div>
         </div>
-        <div className="related-products">
+       {relatedPumps.length>0&&(<div className="related-products">
           <h2>Related Products</h2>
           <div className="related-grid">
-            {relatedProducts.map((product) => (
-              <div key={product.id} className="related-item">
+            {relatedPumps.map((product) => (
+              <Link
+              key={product.id}
+              href={`/product/product-detail/${product.id}`}
+            
+              passHref
+              >
+              <div  className="related-item">
                 <img
                   src={product.image}
                   alt={product.title}
@@ -563,9 +555,10 @@ export default function ProductDetailProductDetail({ product }) {
             <p>Drive: {product.drive}</p> */}
                 </div>
               </div>
+              </Link>
             ))}
           </div>
-        </div>
+        </div>)}
       </main>
     </div>
   );

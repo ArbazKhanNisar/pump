@@ -60,3 +60,7 @@ export function cleanData(data) {
   }
   return data;
 }
+
+export var relatedProducts = [
+
+];

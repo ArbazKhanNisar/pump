@@ -3,7 +3,7 @@ import { Roboto, Poppins } from "next/font/google";
 import 'animate.css'
 import Footer from '@/Component/footer'
 import Nav from '@/Component/navbar'
-
+import { PumpProvider } from "@/context/PumpContext";
 // Load fonts properly
 const roboto = Roboto({
   weight: ["400", "500"],
@@ -45,7 +45,7 @@ export default function RootLayout({ children }) {
       
       className={`${roboto.variable} ${poppins.variable}`}>
         {<Nav/>}
-        {children}
+        <PumpProvider>{children}</PumpProvider>
         {<Footer/>}
       </body>
     </html>
