@@ -127,11 +127,11 @@ export default function Footer() {
             <Link href="/service" className="btn btn-link">
               Our Services
             </Link>
-            <Link href="/product" className="btn btn-link">
-             Products
+            <Link href="/policies" className="btn btn-link">
+            Policies
             </Link>
-            <Link href="/blog" className="btn btn-link">
-            Blog
+            <Link href="/careers" className="btn btn-link">
+            Careers
             </Link>
           </div>
 
