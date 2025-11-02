@@ -22,6 +22,9 @@ async function getProduct(id) {
       type: raw.type,
       drive: raw.drive,
       image: raw.image,
+      images:( raw.product_images||[
+       
+  ]).map(sep=>(sep.image)),
       description: raw.description || "",
       product_applications: raw.product_applications || [],
       product_model_features: raw.product_model_features || [],

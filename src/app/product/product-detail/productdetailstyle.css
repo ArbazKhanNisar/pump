@@ -568,3 +568,21 @@
     width: 100%;
   }
 }
+
+
+.thumbnail-images::-webkit-scrollbar {
+  height: 8px;
+}
+.thumbnail-images::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+}
+.thumb-wrapper img {
+  transition: transform 0.25s ease;
+}
+.thumb-wrapper:hover img {
+  transform: scale(1.05);
+}
+.thumb-wrapper.border-primary {
+  box-shadow: 0 0 0 3px rgba(13,110,253,0.08);
+}
