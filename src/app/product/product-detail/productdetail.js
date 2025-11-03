@@ -9,7 +9,7 @@ import { API_ENDPOINTS,relatedProducts } from "@/constants/config";
 import Link from "next/link";
 import { usePumpContext } from "@/context/PumpContext";
 
-export default function ProductDetailProductDetail({ product }) {
+export default function ProductDetailProductDetail({ product, relatedPumps}) {
   const [activeTab, setActiveTab] = useState("description");
   const [isOpen, setIsOpen] = useState(false);
   const [captchaValue, setCaptchaValue] = useState(null);
@@ -22,15 +22,8 @@ export default function ProductDetailProductDetail({ product }) {
   });
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
-  const { relatedPumps } = usePumpContext();
-  const handleChange = (e) => {
-    const { type, value } = e.target;
-    const field = e.target.type === "textarea" ? "message" : e.target.type;
-    setFormData((prev) => ({
-      ...prev,
-      [e.target.type === "text" ? "name" : field]: value,
-    }));
-  };
+ 
+ 
 
   // Better: handle by id or name (clearer)
   const handleFieldChange = (e) => {
@@ -505,7 +498,10 @@ const handlePrev = () => {
                 <h2>Model Features</h2>
                 <ul>
                   {product.product_model_features.map((f) => (
-                    <li key={f.id}>{f.title}</li>
+                     <div key={f.id} className="spec-row">
+                     <div className="spec-name">{f.title}</div>
+                     <div className="spec-value"> {f.description}</div>
+                   </div>
                   ))}
                 </ul>
               </div>

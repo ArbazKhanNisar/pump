@@ -20,9 +20,11 @@ export const metadata = {
   title: "My Website",
   description: "Next.js site with Bootstrap template",
   icons: {
-    icon: "/img/favicon.ico",
+    icon: "/isi.svg",
   },
 };
+
+
 
 export default function RootLayout({ children }) {
   return (
@@ -39,6 +41,7 @@ export default function RootLayout({ children }) {
         />
         <link rel="stylesheet" href="/css/bootstrap.min.css" />
         <link rel="stylesheet" href="/css/style.css" />
+        
       </head>     
       <body 
      

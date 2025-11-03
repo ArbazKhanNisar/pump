@@ -13,6 +13,7 @@ export const API_ENDPOINTS = {
 Newsletter:`${PUMP_BASE_URL_SERVER}newsletter/subscribe`,
   BLOG_Detail: (id)=>`${PUMP_BASE_URL_SERVER}blog-detail/${id}`,
   PRODUCT_DETAIL: (id) => `${PUMP_BASE_URL_SERVER}product-detail/${id}`,
+  Relted_PRODUCT: (id) => `${PUMP_BASE_URL_SERVER}products/${id}/related`,
 PRODUCT_List: (params) => `${PUMP_BASE_URL_SERVER}products?${params.toString()}`,
   PAGES: `${PUMP_BASE_URL_SERVER}pages`,
   SIGLE_PAGES:(name)=> `${PUMP_BASE_URL_SERVER}pages/${name}`,

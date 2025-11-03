@@ -72,7 +72,7 @@ export const getPagesMetaData = cache(async (name) => {
     const data = await res.json();
     return data.data || [];
   }
-  
+
   export async function fetchBlogsDetail(id) {
     try {
       const url = `${API_ENDPOINTS.BLOG_Detail(id)}`;

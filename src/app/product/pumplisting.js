@@ -3,7 +3,6 @@
 import React, { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import { API_ENDPOINTS,relatedProducts } from "@/constants/config";
-import { usePumpContext } from "@/context/PumpContext";
 function uniqueValues(arr, key) {
   const set = new Set();
   const out = [];
@@ -20,7 +19,6 @@ function uniqueValues(arr, key) {
 export default function PumpClient({ Ptypes, Itypes }) {
   const [pumps, setPumps] = useState([]);
   const [loading, setLoading] = useState(false);
-  const { updateRelatedPumps } = usePumpContext();
   const [search, setSearch] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState(search);
   const [type, setType] = useState("All");
@@ -196,7 +194,7 @@ export default function PumpClient({ Ptypes, Itypes }) {
                   <Link
                     key={p.id}
                     href={`/product/product-detail/${p.id}`}
-                    onClick={() => updateRelatedPumps(pumps, p.id)}
+                   
                     passHref
                   >
                     <article className="pump-card">
