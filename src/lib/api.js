@@ -1,5 +1,4 @@
 import { API_ENDPOINTS } from "@/constants/config";
-import { cache } from "react";
 
 export async function fetchBlogs({ category = "", title = "" ,page=1}) {
     try {
@@ -22,7 +21,7 @@ export async function fetchBlogs({ category = "", title = "" ,page=1}) {
     }
   }
 
-export const getPagesMetaData = cache(async (name) => {
+export const getPagesMetaData = async (name) => {
     try {
       const res = await fetch(API_ENDPOINTS.SIGLE_PAGES(name), {
         
@@ -36,7 +35,7 @@ export const getPagesMetaData = cache(async (name) => {
       console.error(`❌ Error fetching page meta (${name}):`, error);
       return {};
     }
-  });
+  };
 
 
   export async function getPumps() {

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { IMAGE_DOMAINS} from "@/constants/config";
+import FallbackImage from "@/constants/common";
 
 
 export default function Testimonial({testimonial}) {
@@ -74,7 +75,7 @@ const TestimonialCarousel = ({testimonials}) => {
             key={index}
             className={`testimonial-item ${currentIndex === index ? "active" : "d-none"}`}
           >
-            {/* <img className="img-fluid mb-4" src={IMAGE_DOMAINS(testimonial.client_image)} alt={testimonial.client_name} /> */}
+            {/* <FallbackImage className="FallbackImage-fluid mb-4" src={IMAGE_DOMAINS(testimonial.client_image)} alt={testimonial.client_name} /> */}
             <p className="fs-5">{testimonial.testimonial_quote}</p>
             <div className="bg-primary mb-3" style={{ width: "60px", height: "5px" }}></div>
             <h5>{testimonial.client_name}</h5>

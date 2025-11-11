@@ -1,5 +1,6 @@
 "use client";
 import { IMAGE_DOMAINS } from "@/constants/config";
+import FallbackImage from "@/constants/common";
 export default function Services({services}) {
   const servicesList = [
     {
@@ -63,19 +64,27 @@ export default function Services({services}) {
         {/* Service Items */}
         <div className="row g-4 justify-content-center">
           {(services?.services||{}).map((service, index) => (
-            <div
-              className="col-lg-4 col-md-6 " data-aos="fade-up"
-              key={index}
-            >
-              <div className="service-item bg-light overflow-hidden h-100">
-                <img className="img-fluid" src={IMAGE_DOMAINS(service.image)} alt={service.title} />
-                <div className="service-text position-relative text-center h-100 p-4">
-                  <h5 className="mb-3">{service.title}</h5>
-                  <p>{service.description}</p>
-                  
-                </div>
-              </div>
-            </div>
+           <div
+           className="col-lg-4 col-md-6"
+           data-aos="fade-up"
+           key={index}
+         >
+           <div className="service-item bg-light overflow-hidden h-100">
+             <div className="relative w-100 h-64">
+               <FallbackImage
+                width={500} height={400}
+                 className="object-cover img-fluid"
+                 src={IMAGE_DOMAINS(service.image)}
+                 alt={service.title}
+               />
+             </div>
+             <div className="service-text position-relative text-center h-100 p-4">
+               <h5 className="mb-3">{service.title}</h5>
+               <p>{service.description}</p>
+             </div>
+           </div>
+         </div>
+         
           ))}
         </div>
       </div>

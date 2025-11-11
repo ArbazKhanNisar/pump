@@ -1,5 +1,6 @@
 "use client";
 import { IMAGE_DOMAINS } from "@/constants/config";
+import FallbackImage from "@/constants/common";
 export default function Features({features}) {
   // const featuresList = [
   //   {
@@ -63,10 +64,11 @@ export default function Features({features}) {
               className="position-relative overflow-hidden ps-5 pt-5 h-100"
               style={{ minHeight: "400px" }}
             >
-              <img
+              <FallbackImage
                 className="position-absolute w-100 h-100"
                 src={ IMAGE_DOMAINS(features.section_image) }
                 alt="Feature"
+                fill
                 style={{ objectFit: "cover" }}
               />
              
