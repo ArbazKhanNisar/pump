@@ -2,6 +2,8 @@ import Services from "@/Component/service";
 import { cleanData} from "@/constants/config";
 import { getPagesMetaData } from "@/lib/api";
 import { IMAGE_DOMAINS } from "@/constants/config";
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata() {
   const pages = await getPagesMetaData('services');
   const home = pages || {};

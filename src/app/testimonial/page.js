@@ -2,6 +2,8 @@ import Testimonial from "@/Component/testimonial";
 import { getPagesMetaData } from "@/lib/api";
 import { IMAGE_DOMAINS } from "@/constants/config";
 import { cleanData} from "@/constants/config";
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata() {
   const pages = await getPagesMetaData('testimonial');
   const home = pages || {};

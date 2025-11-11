@@ -2,6 +2,8 @@
 import { getPagesMetaData } from "@/lib/api";
 import Contactsection from './contact.js';
 import { IMAGE_DOMAINS } from "@/constants/config.js";
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata() {
   const pages = await getPagesMetaData('contact');
   const home = pages || {};

@@ -1,6 +1,8 @@
 import About from "@/Component/about";
 import { getPagesMetaData } from "@/lib/api";
 import { IMAGE_DOMAINS } from "@/constants/config";
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata() {
   const pages = await getPagesMetaData('about');
   const home = pages || {};
