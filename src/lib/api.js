@@ -23,10 +23,7 @@ export async function fetchBlogs({ category = "", title = "" ,page=1}) {
 
 export const getPagesMetaData = async (name) => {
     try {
-      const res = await fetch(API_ENDPOINTS.SIGLE_PAGES(name), {
-        
-      });
-  
+      const res = await fetch(API_ENDPOINTS.SIGLE_PAGES(name), { cache: "no-store" });
       if (!res.ok) throw new Error(`Failed to fetch page metadata for: ${name}`);
   
       const json = await res.json();
