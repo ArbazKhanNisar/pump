@@ -3,8 +3,8 @@
 
 
 // Base URLs
-export const PUMP_BASE_URL_CLIENT = "https://lightcoral-crocodile-660169.hostingersite.com";
-export const PUMP_BASE_URL_SERVER = "https://lightcoral-crocodile-660169.hostingersite.com/api/";
+export const PUMP_BASE_URL_CLIENT = "https://admin.inventomaticseals.com";
+export const PUMP_BASE_URL_SERVER = "https://admin.inventomaticseals.com/api/";
 
 // API Endpoints
 export const API_ENDPOINTS = {
