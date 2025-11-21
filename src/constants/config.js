@@ -1,7 +1,6 @@
 // constants/config.js
 
-// Base URLs
-export const PUMP_BASE_URL_CLIENT = "https://// constants/config.js
+
 
 // Base URLs
 export const PUMP_BASE_URL_CLIENT = "https://lightcoral-crocodile-660169.hostingersite.com";
