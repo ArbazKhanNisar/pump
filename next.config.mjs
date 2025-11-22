@@ -5,7 +5,7 @@ const nextConfig = {
         {
           protocol: 'https',
           hostname: 'admin.inventomaticseals.com',
-          pathname: '/**', // allow all image paths
+          pathname: '/**', 
         },
       ],
     },
