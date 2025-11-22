@@ -7,7 +7,7 @@ export default function HomePage({ slides }) {
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
-    console.log(slides);
+    (slides);
     const interval = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % slides.length);
     }, 7000);

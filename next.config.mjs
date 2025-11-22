@@ -4,7 +4,7 @@ const nextConfig = {
       remotePatterns: [
         {
           protocol: 'https',
-          hostname: 'ghostwhite-alligator-811158.hostingersite.com',
+          hostname: 'admin.inventomaticseals.com',
           pathname: '/**', // allow all image paths
         },
       ],

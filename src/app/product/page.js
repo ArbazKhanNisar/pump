@@ -21,7 +21,7 @@ export default async function PumpListing() {
   // Fetch both in parallel for speed
   const [pages, PtypesData,ItypesData,] = await Promise.all([getPagesMetaData('product'), getProductTypes(),getIndustryTypes()]);
   const product= pages?.page_sections?.[0]?.content || {};
-  console.log(PtypesData,ItypesData);
+  (PtypesData,ItypesData);
   return (
     <section className="px-6 py-8">
        <div

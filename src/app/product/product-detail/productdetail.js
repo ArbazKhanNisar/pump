@@ -5,11 +5,11 @@ import Image from "next/image";
 import "./productdetailstyle.css";
 import ReCAPTCHA from "react-google-recaptcha";
 import { Site_Key } from "@/constants/config";
-import { API_ENDPOINTS,relatedProducts } from "@/constants/config";
+import { API_ENDPOINTS, relatedProducts } from "@/constants/config";
 import Link from "next/link";
 import { usePumpContext } from "@/context/PumpContext";
 
-export default function ProductDetailProductDetail({ product, relatedPumps}) {
+export default function ProductDetailProductDetail({ product, relatedPumps }) {
   const [activeTab, setActiveTab] = useState("description");
   const [isOpen, setIsOpen] = useState(false);
   const [captchaValue, setCaptchaValue] = useState(null);
@@ -22,8 +22,8 @@ export default function ProductDetailProductDetail({ product, relatedPumps}) {
   });
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
- 
- 
+
+
 
   // Better: handle by id or name (clearer)
   const handleFieldChange = (e) => {
@@ -113,40 +113,40 @@ export default function ProductDetailProductDetail({ product, relatedPumps}) {
     }
   };
 
-// Smooth scroll selected thumbnail into view
-useEffect(() => {
-  const el = thumbsRef.current;
-  if (!el) return;
+  // Smooth scroll selected thumbnail into view
+  useEffect(() => {
+    const el = thumbsRef.current;
+    if (!el) return;
 
-  const children = Array.from(el.children);
-  const selectedChild = children.find((c) => {
-    const img = c.querySelector("img");
-    return (
-      img?.src === selectedImage || img?.getAttribute("src") === selectedImage
-    );
-  });
+    const children = Array.from(el.children);
+    const selectedChild = children.find((c) => {
+      const img = c.querySelector("img");
+      return (
+        img?.src === selectedImage || img?.getAttribute("src") === selectedImage
+      );
+    });
 
-  if (selectedChild) {
-    const childLeft = selectedChild.offsetLeft;
-    const childWidth = selectedChild.offsetWidth;
-    const containerWidth = el.clientWidth;
-    const targetScrollLeft = childLeft - containerWidth / 2 + childWidth / 2;
-    el.scrollTo({ left: targetScrollLeft, behavior: "smooth" });
-  }
-}, [selectedImage]);
+    if (selectedChild) {
+      const childLeft = selectedChild.offsetLeft;
+      const childWidth = selectedChild.offsetWidth;
+      const containerWidth = el.clientWidth;
+      const targetScrollLeft = childLeft - containerWidth / 2 + childWidth / 2;
+      el.scrollTo({ left: targetScrollLeft, behavior: "smooth" });
+    }
+  }, [selectedImage]);
 
- // Next & Prev controls
- const handleNext = () => {
-  const currentIndex = allImages.indexOf(selectedImage);
-  const nextIndex = (currentIndex + 1) % allImages.length;
-  setSelectedImage(allImages[nextIndex]);
-};
+  // Next & Prev controls
+  const handleNext = () => {
+    const currentIndex = allImages.indexOf(selectedImage);
+    const nextIndex = (currentIndex + 1) % allImages.length;
+    setSelectedImage(allImages[nextIndex]);
+  };
 
-const handlePrev = () => {
-  const currentIndex = allImages.indexOf(selectedImage);
-  const prevIndex = (currentIndex - 1 + allImages.length) % allImages.length;
-  setSelectedImage(allImages[prevIndex]);
-};
+  const handlePrev = () => {
+    const currentIndex = allImages.indexOf(selectedImage);
+    const prevIndex = (currentIndex - 1 + allImages.length) % allImages.length;
+    setSelectedImage(allImages[prevIndex]);
+  };
   return (
     <div className="container">
       <main className="product-detail">
@@ -165,7 +165,7 @@ const handlePrev = () => {
                   <img
                     src={selectedImage}
                     alt={product.title}
-                    className="img-fluid rounded shadow-sm w-100"
+                    className="img-fluid rounded shadow-sm w-120"
                     style={{
                       objectFit: "cover",
                       maxHeight: "450px",
@@ -201,14 +201,13 @@ const handlePrev = () => {
                   <div
                     ref={thumbsRef}
                     onWheel={onThumbsWheel}
-                    className={`thumbnail-images d-flex flex-nowrap gap-2 py-2 justify-content-center ${
-                      allImages.length <= 3 ? "flex-wrap" : ""
-                    }`}
+                    className={`thumbnail-images d-flex flex-nowrap gap-2 py-2 justify-content-start ${allImages.length <= 3 ? "flex-wrap" : ""
+                      }`}
                     style={{
                       overflowX: allImages.length > 3 ? "auto" : "visible",
-                      overflowY: "hidden",
-                      WebkitOverflowScrolling: "touch",
-                      scrollbarWidth: "thin",
+                      // overflowY: "hidden",
+                      // WebkitOverflowScrolling: "touch",
+                      // scrollbarWidth: "thin",
                       flex: 1,
                       maxWidth: "100%",
                     }}
@@ -217,11 +216,10 @@ const handlePrev = () => {
                       <div
                         key={idx}
                         data-index={idx}
-                        className={`thumb-wrapper flex-shrink-0 border rounded p-1 ${
-                          selectedImage === img
+                        className={`thumb-wrapper flex-shrink-0 border rounded p-1 ${selectedImage === img
                             ? "border-primary"
                             : "border-light"
-                        }`}
+                          }`}
                         style={{
                           cursor: "pointer",
                           width: "80px",
@@ -270,19 +268,22 @@ const handlePrev = () => {
               <div className="product-info">
                 {/* Specs Section */}
                 <div className="specs-highlight mb-3">
-                  <div className="spec-item d-flex justify-content-between  py-2">
-                    <span className="spec-label fw-semibold">Model:</span>
-                    <span className="spec-value">{product.model}</span>
+                  <div className="spec-item row py-2">
+                    <div className="col-4 fw-semibold">Model:</div>
+                    <div className="col-8">{product.model}</div>
                   </div>
-                  <div className="spec-item d-flex justify-content-between  py-2">
-                    <span className="spec-label fw-semibold">Type:</span>
-                    <span className="spec-value">{product.type}</span>
+
+                  <div className="spec-item row py-2">
+                    <div className="col-4 fw-semibold">Type:</div>
+                    <div className="col-8">{product.type}</div>
                   </div>
-                  <div className="spec-item d-flex justify-content-between  py-2">
-                    <span className="spec-label fw-semibold">Drive:</span>
-                    <span className="spec-value">{product.drive}</span>
+
+                  <div className="spec-item row py-2">
+                    <div className="col-4 fw-semibold">Drive:</div>
+                    <div className="col-8">{product.drive}</div>
                   </div>
                 </div>
+
 
                 {/* Action Buttons */}
                 <div className="action-section mt-4">
@@ -498,10 +499,10 @@ const handlePrev = () => {
                 <h2>Model Features</h2>
                 <ul>
                   {product.product_model_features.map((f) => (
-                     <div key={f.id} className="spec-row">
-                     <div className="spec-name">{f.title}</div>
-                     <div className="spec-value"> {f.description}</div>
-                   </div>
+                    <div key={f.id} className="spec-row">
+                      <div className="spec-name">{f.title}</div>
+                      <div className="spec-value"> {f.description}</div>
+                    </div>
                   ))}
                 </ul>
               </div>
@@ -526,31 +527,31 @@ const handlePrev = () => {
             )}
           </div>
         </div>
-       {relatedPumps.length>0&&(<div className="related-products">
+        {relatedPumps.length > 0 && (<div className="related-products">
           <h2>Related Products</h2>
           <div className="related-grid">
             {relatedPumps.map((product) => (
               <Link
-              key={product.id}
-              href={`/product/product-detail/${product.id}`}
-            
-              passHref
+                key={product.id}
+                href={`/product/product-detail/${product.id}`}
+
+                passHref
               >
-              <div  className="related-item">
-                <img
-                  src={product.image}
-                  alt={product.title}
-                  onError={(e) => {
-                    e.currentTarget.src = "/assets/img/blog/blog-post-3.webp";
-                  }}
-                />
-                <div className="related-info">
-                  <h4>{product.title}</h4>
-                  <p>Model: {product.model}</p>
-                  {/* <p>Type: {product.type}</p>
+                <div className="related-item">
+                  <img
+                    src={product.image}
+                    alt={product.title}
+                    onError={(e) => {
+                      e.currentTarget.src = "/assets/img/blog/blog-post-3.webp";
+                    }}
+                  />
+                  <div className="related-info">
+                    <h4>{product.title}</h4>
+                    <p>Model: {product.model}</p>
+                    {/* <p>Type: {product.type}</p>
             <p>Drive: {product.drive}</p> */}
+                  </div>
                 </div>
-              </div>
               </Link>
             ))}
           </div>

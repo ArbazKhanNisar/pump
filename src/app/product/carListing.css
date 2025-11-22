@@ -42,21 +42,22 @@
   padding: 0.75rem; 
   border: 1px solid #cbd5e1; 
   border-radius: 8px; 
+  background: inherit;
   font-size: 0.9rem;
   transition: all 0.2s;
 }
 
 .search-box input:focus {
   outline: none;
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  border-color:  #FDA12B;
+  /* box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); */
 }
 
 .search-box button { 
   padding: 0.75rem; 
   border-radius: 8px; 
   border: none; 
-  background: #3b82f6; 
+  background: #FDA12B;
   cursor: pointer;
   color: white;
   transition: background 0.2s;
@@ -122,7 +123,7 @@
 
 /* reset button */
 .btn-reset { 
-  background: #ef4444; 
+  background: #FDA12B;
   color: #fff; 
   border: none; 
   padding: 0.75rem 1rem; 
@@ -135,7 +136,7 @@
 }
 
 .btn-reset:hover {
-  background: #dc2626;
+  background:  #FDA12B;
 }
 
 /* main content */
@@ -296,7 +297,7 @@
 }
 
 .status.rent { 
-  background: #3b82f6; 
+  background:  #FDA12B;
 }
 
 .status.sale { 
@@ -382,13 +383,13 @@
 
 .page-btn:hover,
 .nav-btn:hover {
-  background: #007bff;
+  background: #FDA12B;
   color: #fff;
-  border-color: #007bff;
+  border-color:  #FDA12B;
 }
 
 .page-btn.active {
-  background: #007bff;
+  background:  #FDA12B;
   color: #fff;
   font-weight: 600;
   cursor: default;

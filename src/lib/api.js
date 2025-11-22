@@ -3,7 +3,7 @@ import { API_ENDPOINTS } from "@/constants/config";
 export async function fetchBlogs({ category = "", title = "" ,page=1}) {
     try {
       const params = new URLSearchParams();
-      console.log(page);
+      (page);
       params.append("page",page)
       if (category && category !== "All") params.append("blog_category_id", category);
       if (title) params.append("title", title);

@@ -67,7 +67,7 @@ export default function PumpClient({ Ptypes, Itypes }) {
         }
 
         const url = `${API_ENDPOINTS.PRODUCT_List(params)}`;
-        console.log("API URL:", url);
+        ("API URL:", url);
 
         const res = await fetch(url, { cache: "no-store" });
         if (!res.ok) throw new Error("Failed to fetch pumps");
@@ -106,7 +106,7 @@ export default function PumpClient({ Ptypes, Itypes }) {
         }
 
         const url = `${API_ENDPOINTS.PRODUCT_List(params)}`;
-        console.log("API URL:", url);
+        ("API URL:", url);
 
         const res = await fetch(url, { cache: "no-store" });
         if (!res.ok) throw new Error("Failed to fetch pumps");
@@ -146,7 +146,7 @@ export default function PumpClient({ Ptypes, Itypes }) {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />
-              <button aria-label="search">🔍</button>
+            
             </div>
           </div>
 

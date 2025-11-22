@@ -1,6 +1,8 @@
 "use client";
 import { IMAGE_DOMAINS } from "@/constants/config";
 import FallbackImage from "@/constants/common";
+import Link from "next/link";
+Link
 export default function Services({services}) {
   const servicesList = [
     {
@@ -55,9 +57,9 @@ export default function Services({services}) {
             </div>
           </div>
           <div className="col-lg-6 text-lg-end"  data-aos="fade-up" data-aos-delay="0.3s">
-            <a className="btn btn-primary py-3 px-5" href="/service">
+            <Link className="btn btn-primary py-3 px-5" href="/service">
               More Services
-            </a>
+            </Link>
           </div>
         </div>
 

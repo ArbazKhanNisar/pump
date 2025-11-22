@@ -18,7 +18,7 @@ export async function generateMetadata() {
 export default async function page(params) {
   const pages = await getPagesMetaData('contact');
   const contact= pages?.page_sections?.[0]?.content || {};
-  console.log(contact);
+  (contact);
    return <Contactsection url={IMAGE_DOMAINS(contact.banner_image)} />
 };
 

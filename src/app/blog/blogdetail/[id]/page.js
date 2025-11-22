@@ -30,7 +30,7 @@ export async function generateMetadata({ params }) {
 
 export default async function page({params}) {
   const { id } = await params;
-  console.log(id);
+  (id);
   const blogdata = await fetchBlogsDetail(id);
     
 return <>
