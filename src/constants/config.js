@@ -24,7 +24,7 @@ PRODUCT_List: (params) => `${PUMP_BASE_URL_SERVER}products?${params.toString()}`
 };
 
 // Image host (for next.config.js)
-export const IMAGE_DOMAINS=(string)=>  `${PUMP_BASE_URL_CLIENT}/storage/${string}`;
+export const IMAGE_DOMAINS=(string)=>`${string}`;
 
 // App info
 export const APP_NAME = "Inventomatic Seals India";
