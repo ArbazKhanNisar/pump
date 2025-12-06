@@ -93,7 +93,7 @@ export default function Nav() {
             <Link href="/about" className={`nav-item nav-link ${isActive("/about")}`} onClick={handleNavClick}>
               About Us
             </Link>
-            <Link href="/product"   className={`nav-item nav-link ${isActive("/service")}`} onClick={handleNavClick}>
+            <Link href="/product"   className={`nav-item nav-link ${isActive("/product")}`} onClick={handleNavClick}>
               Products
             </Link>
 
@@ -110,11 +110,11 @@ export default function Nav() {
                 Pages
               </a>
               <div className={`dropdown-menu bg-light m-0 ${dropdownOpen ? "show" : ""}`}>
-                <Link href="/feature" className="dropdown-item">Features</Link>
-                <Link href="/appointment" className="dropdown-item">Appointment</Link>
-                <Link href="/testimonial" className="dropdown-item">Testimonial</Link>
-                <Link href="/blog" className="dropdown-item">Blogs</Link>
-                <Link href="/service" className="dropdown-item">Services</Link>
+                <Link href="/feature" className={`dropdown-item  ${isActive("/feature")}`} onClick={handleNavClick}>Features</Link>
+                <Link href="/appointment" className={`dropdown-item  ${isActive("/appointment")}`} onClick={handleNavClick}>Appointment</Link>
+                <Link href="/testimonial" className={`dropdown-item  ${isActive("/testimonial")}`} onClick={handleNavClick}>Testimonial</Link>
+                <Link href="/blog" className={`dropdown-item  ${isActive("/blog")}`} onClick={handleNavClick}>Blogs</Link>
+                <Link href="/service" className={`dropdown-item  ${isActive("/service")}`} onClick={handleNavClick}>Services</Link>
               </div>
             </div>
 

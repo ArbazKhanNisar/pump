@@ -1,0 +1,5 @@
+User-agent: *
+Disallow:
+
+# Update the URL below to your production domain
+Sitemap: https://inventomaticseals.com/sitemap.xml
