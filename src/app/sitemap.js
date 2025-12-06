@@ -1,5 +1,5 @@
 // app/sitemap.js (App Router dynamic sitemap)
-
+export const dynamic = 'force-dynamic'
 import { API_ENDPOINTS } from '@/constants/config'; // ⬅️ adjust this path to your actual config
 
 const BASE_URL = process.env.SITEMAP_BASE_URL || 'https://inventomaticseals.com';
