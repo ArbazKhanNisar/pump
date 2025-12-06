@@ -3,6 +3,7 @@ import "./carListing.css";
 import PumpClient from './pumplisting.js';
 import { API_ENDPOINTS } from "@/constants/config";
 import { getPagesMetaData,getPumps,getProductTypes,getIndustryTypes } from "@/lib/api";
+export const dynamic = "force-dynamic";
 import { IMAGE_DOMAINS } from "@/constants/config";
 export async function generateMetadata() {
   const pages = await getPagesMetaData('product');

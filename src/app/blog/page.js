@@ -2,6 +2,7 @@ import BlogList from "./BlogList"; // 👇 client component
 import { API_ENDPOINTS ,IMAGE_DOMAINS} from "@/constants/config";
 import { getPagesMetaData } from "@/lib/api";
 import { cleanData} from "@/constants/config";
+export const dynamic = "force-dynamic";
 export async function generateMetadata() {
   const pages = await getPagesMetaData('blog');
   const home = pages || {};
