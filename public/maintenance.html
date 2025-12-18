@@ -1,0 +1,136 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Site Under Maintenance</title>
+    <meta name="theme-color" content="#0f172a"/>
+    <style>
+      :root{
+        --bg1:#0f172a;
+        --bg2:#0b1220;
+        --card:#ffffff;
+        --muted:#718096;
+        --accent:#06b6d4;
+      }
+      @media (prefers-color-scheme: light){
+        :root{
+          --bg1: #e6f0ff;
+          --bg2: #f7fbff;
+          --card:#0b1220;
+          --muted:#5b6b7a;
+          --accent:#0ea5a4;
+        }
+      }
+
+      html,body{height:100%;margin:0;font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;}
+      body{
+        background: radial-gradient(1200px 600px at 10% 10%, rgba(6,182,212,0.08), transparent),
+                    radial-gradient(900px 500px at 90% 90%, rgba(99,102,241,0.06), transparent),
+                    linear-gradient(180deg,var(--bg1),var(--bg2));
+        display:flex;align-items:center;justify-content:center;padding:32px;
+        color:var(--card);
+        -webkit-font-smoothing:antialiased;
+      }
+
+      .panel{
+        width:100%;max-width:980px;background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+        border-radius:16px;padding:28px;box-shadow:0 10px 30px rgba(2,6,23,0.6);
+        display:flex;gap:28px;align-items:center;backdrop-filter: blur(6px);
+      }
+
+      .illustration{
+        width:320px;height:220px;display:flex;align-items:center;justify-content:center;
+      }
+
+      .illustration svg{width:220px;height:220px;display:block}
+
+      .gear{transform-origin:50% 50%;animation:spin 12s linear infinite}
+      @keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+
+      .content{flex:1;min-width:260px;color:var(--card)}
+      h1{margin:0;font-size:28px;line-height:1.05}
+      p.lead{margin:12px 0 18px;color:var(--muted);font-size:15px}
+      .meta{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
+      .chip{background:rgba(255,255,255,0.03);color:var(--card);padding:8px 12px;border-radius:999px;font-size:13px;border:1px solid rgba(255,255,255,0.04)}
+      .actions{margin-top:20px;display:flex;gap:12px}
+      .btn{
+        display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;border:0;cursor:pointer;font-weight:600;
+        text-decoration:none;color:var(--card);background:linear-gradient(90deg,var(--accent),#7c3aed);box-shadow:0 6px 18px rgba(12,20,40,0.45)
+      }
+      .btn.secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--card);font-weight:600}
+      .small{font-size:13px;color:var(--muted)}
+
+      /* decorative floating dots */
+      .dots{position:absolute;inset:0;pointer-events:none}
+      .dot{position:absolute;border-radius:50%;opacity:0.12;background:radial-gradient(circle,#fff,#fff);filter:blur(16px)}
+      .dot.a{width:220px;height:220px;left:-10%;top:10%}
+      .dot.b{width:140px;height:140px;right:-5%;bottom:5%}
+      .dot.c{width:80px;height:80px;left:50%;top:-6%}
+
+      @media (max-width:760px){
+        .panel{flex-direction:column;align-items:center;padding:20px}
+        .illustration{width:240px;height:180px}
+        h1{font-size:22px;text-align:center}
+        .content{text-align:center}
+      }
+    </style>
+  </head>
+  <body>
+    <div class="dots" aria-hidden="true">
+      <div class="dot a"></div>
+      <div class="dot b"></div>
+      <div class="dot c"></div>
+    </div>
+
+    <main class="panel" role="main" aria-labelledby="maint-title">
+      <div class="illustration" aria-hidden="true">
+        <!-- animated gear + wrench -->
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1">
+              <stop offset="0" stop-color="#06b6d4"/>
+              <stop offset="1" stop-color="#7c3aed"/>
+            </linearGradient>
+            <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+              <feDropShadow dx="0" dy="8" stdDeviation="18" flood-color="#020617" flood-opacity="0.45"/>
+            </filter>
+          </defs>
+
+          <g transform="translate(100,100)">
+            <g class="gear" filter="url(#shadow)">
+              <path fill="url(#g1)" d="M-34-62l11-8 12 8 8-12 16-4 4 16 12 8-4 16 8 12 12-8 11 8-8 12 8 12-11 8-12-8-8 12-16 4-4-16-12-8 4-16-8-12-12 8-11-8 8-12-8-12z"/>
+              <circle r="28" fill="#0b1220" opacity="0.85"/>
+              <circle r="16" fill="#fff" opacity="0.06"/>
+            </g>
+
+            <g transform="translate(-18,24) rotate(-18)">
+              <rect x="26" y="-6" width="6" height="46" rx="3" fill="#f8fafc" opacity="0.95" transform="rotate(24)"/>
+              <path d="M34 0c4-6 12-12 22-6" stroke="#f1f5f9" stroke-width="4" stroke-linecap="round" fill="none" opacity="0.9"/>
+            </g>
+          </g>
+        </svg>
+      </div>
+
+      <section class="content">
+        <h1 id="maint-title">We'll be back shortly</h1>
+        <p class="lead">We're performing scheduled maintenance to improve the site. Thank you for your patience — we expect to be back online shortly.</p>
+
+        <div class="meta" aria-hidden="false">
+          <div class="chip">Status: Maintenance</div>
+          <div class="chip">Estimated: 1–2 hours</div>
+          <div class="chip">Retry-After: 3600s</div>
+        </div>
+
+        <div class="actions" role="group" aria-label="Actions">
+          <a class="btn" href="/" title="Return to homepage">Return home</a>
+          <a class="btn secondary" href="mailto:support@inventomaticseals.com" title="Contact support">Contact support</a>
+        </div>
+
+        <p class="small" style="margin-top:14px">If you need urgent access, reply to the support email. This page will update automatically when maintenance completes.</p>
+      </section>
+    </main>
+  </body>
+</html>
