@@ -1,6 +1,6 @@
 // ...existing code...
 /** @type {import('next').NextConfig} */
-const MAINTENANCE_MODE =  "0";
+const MAINTENANCE_MODE =  "1";
 const nextConfig = {
   images: {
     remotePatterns: [
