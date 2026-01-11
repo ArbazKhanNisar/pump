@@ -163,6 +163,7 @@ export default function ProductDetailProductDetail({ product, relatedPumps }) {
                 {/* Main Image */}
                 <div className="main-image mb-3">
                   <img
+                    loading="lazy"
                     src={selectedImage}
                     alt={product.title}
                     className="img-fluid rounded shadow-sm w-120"
@@ -231,6 +232,7 @@ export default function ProductDetailProductDetail({ product, relatedPumps }) {
                         }}
                       >
                         <img
+                          loading="lazy"
                           src={img}
                           alt={`Thumbnail ${idx + 1}`}
                           className="w-100 h-100"
@@ -539,6 +541,7 @@ export default function ProductDetailProductDetail({ product, relatedPumps }) {
               >
                 <div className="related-item">
                   <img
+                    loading="lazy"
                     src={product.image}
                     alt={product.title}
                     onError={(e) => {

@@ -200,6 +200,7 @@ export default function PumpClient({ Ptypes, Itypes }) {
                     <article className="pump-card">
                       <div className="card-media">
                         <img
+                          loading="lazy"
                           src={p.image}
                           alt={p.title}
                           onError={(e) => {

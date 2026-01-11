@@ -61,7 +61,8 @@ export default function Nav() {
     <img 
       width={"auto"} 
       height={80} 
-      src={logo} 
+           loading="lazy"
+           src={logo} 
       alt="Inventomatic Seals India Logo" 
       className="me-2"
     />

@@ -55,16 +55,17 @@ export default function Footer() {
             
             
           <div className="footer-brand text-white">
-    <img
-      src={logo}
-      alt="Inventomatic Seals India Logo"
-      height={120}
-      className="img-fits mb-2"
-      style={{  width: "100%",
-        maxWidth: "180px", // optional limit
-        height: "auto",
-        objectFit: "contain", }}
-    />
+          <img
+            loading="lazy"
+            src={logo}
+            alt="Inventomatic Seals India Logo"
+            height={120}
+            className="img-fits mb-2"
+            style={{  width: "100%",
+              maxWidth: "180px", // optional limit
+              height: "auto",
+              objectFit: "contain", }}
+          />
     <h5 className="fw-semibold text-light mb-1">Inventomatic Seals India</h5>
     <p className="mb-0 text-light opacity-75">Precision in motion</p>
   </div>

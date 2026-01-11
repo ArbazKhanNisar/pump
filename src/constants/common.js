@@ -10,6 +10,7 @@ export default function FallbackImage({ src, alt, width, height, ...props }) {
       {...props}
       src={imgSrc || "/img/ppl.png"}
       alt={alt || "Default image"}
+      loading="lazy"
       width={width}
       height={height}
       onError={() => setImgSrc("/img/ppl.png")}

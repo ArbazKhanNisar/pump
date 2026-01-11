@@ -182,6 +182,7 @@ function BlogCard({ item }) {
     <article className="card h-100 shadow-sm">
       <div style={{ position: "relative", width: "100%", height: 180 }}>
         <Image
+        loading="lazy"
           src={imgSrc || "/images/fallback-blog.webp"}
           alt={item.title}
           fill

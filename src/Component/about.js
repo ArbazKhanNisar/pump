@@ -1,6 +1,7 @@
 "use client";
 import { IMAGE_DOMAINS } from "@/constants/config";
 import Image from "next/image";
+import FallbackImage from "@/constants/common";
 export default function About({data}) {
  
 
@@ -14,14 +15,22 @@ export default function About({data}) {
               className="position-relative overflow-hidden ps-5 pt-5 h-100"
               style={{ minHeight: "400px" }}
             >
-              <Image
+
+               <FallbackImage      
+                className="position-absolute w-100 h-100"
+                src={IMAGE_DOMAINS(data.image)}
+                alt="About"
+                fill
+                style={{ objectFit: "cover" }}
+                             />
+              {/* <Image
                 className="position-absolute w-100 h-100"
                 src={IMAGE_DOMAINS(data.image)}
                 alt="About"
                 fill
                 
                 style={{ objectFit: "cover" }}
-              />
+              /> */}
              
             </div>
           </div>

@@ -23,7 +23,7 @@ export default function Team() {
         <div className="row g-4">
           <div className="col-lg-4 col-md-6 "  data-aos="fade-up" data-aos-delay="0.1s">
             <div className="team-item position-relative">
-              <img className="img-fluid" src="/img/team-1.jpg" alt="" />
+              <img loading="lazy" className="img-fluid" src="/img/team-1.jpg" alt="" />
               <div className="team-text bg-white p-4">
                 <h5>Full Name</h5>
                 <span>Engineer</span>
@@ -33,7 +33,7 @@ export default function Team() {
 
           <div className="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="0.3s">
             <div className="team-item position-relative">
-              <img className="img-fluid" src="/img/team-2.jpg" alt="" />
+              <img loading="lazy" className="img-fluid" src="/img/team-2.jpg" alt="" />
               <div className="team-text bg-white p-4">
                 <h5>Full Name</h5>
                 <span>Engineer</span>
@@ -43,7 +43,7 @@ export default function Team() {
 
           <div className="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="0.5s">
             <div className="team-item position-relative">
-              <img className="img-fluid" src="/img/team-3.jpg" alt="" />
+              <img loading="lazy" className="img-fluid" src="/img/team-3.jpg" alt="" />
               <div className="team-text bg-white p-4">
                 <h5>Full Name</h5>
                 <span>Engineer</span>

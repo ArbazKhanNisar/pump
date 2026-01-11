@@ -1,4 +1,5 @@
 "use client";
+import FallbackImage from "@/constants/common";
 
 export default function Facts() {
   const facts = [
@@ -43,11 +44,15 @@ export default function Facts() {
             data-aos-delay={fact.delay} // 👈 AOS instead of wow
           >
             <div className="position-relative">
+
+
+
               <img
                 className="img-fluid w-100"
                 src={fact.img}
                 alt={fact.title}
-              />
+                loading="lazy"
+                />
               <div className="facts-overlay">
                 <h1 className="display-1">{fact.id}</h1>
                 <h4 className="text-white mb-3">{fact.title}</h4>
