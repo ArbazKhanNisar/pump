@@ -22,6 +22,7 @@ export default async function HomePage() {
   try {
     // Fetch all page data
     const res = await fetch(API_ENDPOINTS.PAGES, { cache: "no-store" });
+  
     if (!res.ok) throw new Error("Failed to fetch pages data");
 
     const json = await res.json();
