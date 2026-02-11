@@ -138,11 +138,11 @@ export default function PumpClient({ Ptypes, Itypes }) {
         {/* Sidebar */}
         <aside className="pump-sidebar">
           <div className="widget search">
-            <h3>Pump Search</h3>
+            <h3>Search</h3>
             <div className="search-box">
               <input
                 type="text"
-                placeholder="Search pumps..."
+                placeholder="Search "
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />
@@ -151,7 +151,7 @@ export default function PumpClient({ Ptypes, Itypes }) {
           </div>
 
           <div className="widget">
-            <h3>Pump Filter</h3>
+            <h3>Filter</h3>
 
             <label className="label">Industry Types</label>
             <select value={type} onChange={(e) => setType(e.target.value)}>
